@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 
-std::map<int, char> character = {
+const std::map<int, char> character = {
 	//”š
 	{ 0x02, '1' },
 	{ 0x03, '2' },
@@ -45,5 +45,6 @@ std::map<int, char> character = {
 	{ 0x32, 'm' },
 
 	//‹L†
+    { 0x34, '.' },
 	{ 0x35, '/' },
 };

@@ -3,9 +3,6 @@
 #include "../../Func.h"
 using namespace func;
 
-// ファイルネーム最大文字数
-#define MAX 20
-
 // コンストラクタ
 Editor::Editor() : 
 	flam(0)
@@ -56,16 +53,23 @@ void Editor::Scan(std::string m)
 		{
 			if (TriggerKey(i))
 			{
-				for (auto& itr : character)
+				if (i == 0x0e && m.size() > 0)
 				{
-					if (itr.first != i)
+					m.pop_back();
+				}
+				else
+				{
+					for (auto& itr : character)
 					{
-						continue;
-					}
-					else
-					{
-						m.push_back(itr.second);
-						break;
+						if (itr.first != i)
+						{
+							continue;
+						}
+						else
+						{
+							m.push_back(itr.second);
+							break;
+						}
 					}
 				}
 			}
