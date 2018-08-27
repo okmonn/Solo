@@ -35,10 +35,16 @@
     <ClCompile Include="DirectX\Texture\WICTextureLoader12.cpp" />
     <ClCompile Include="DirectX\Union.cpp" />
     <ClCompile Include="Func.cpp" />
+    <ClCompile Include="Game\Editor\Editor.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\Scene\Edit.cpp" />
+    <ClCompile Include="Game\Scene\Play.cpp" />
+    <ClCompile Include="Game\Scene\Result.cpp" />
+    <ClCompile Include="Game\Scene\Title.cpp" />
     <ClCompile Include="Input\Input.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Sound\MIDI_IN.cpp" />
-    <ClCompile Include="Sound\WAVE.cpp" />
+    <ClCompile Include="Sound\MIDI\MIDI_IN.cpp" />
+    <ClCompile Include="Sound\WAVE\WAVE.cpp" />
     <ClCompile Include="Sound\Xaudio2.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
@@ -64,12 +70,21 @@
     <ClInclude Include="etc\Vector2.h" />
     <ClInclude Include="etc\Vector3.h" />
     <ClInclude Include="Func.h" />
+    <ClInclude Include="Game\Editor\Character.h" />
+    <ClInclude Include="Game\Editor\Editor.h" />
+    <ClInclude Include="Game\etc\Share.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\Scene\Edit.h" />
+    <ClInclude Include="Game\Scene\Play.h" />
+    <ClInclude Include="Game\Scene\Result.h" />
+    <ClInclude Include="Game\Scene\Scene.h" />
+    <ClInclude Include="Game\Scene\Title.h" />
     <ClInclude Include="Icon\Icon.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Input\KeyData.h" />
-    <ClInclude Include="Sound\MIDI_IN.h" />
+    <ClInclude Include="Sound\MIDI\MIDI_IN.h" />
     <ClInclude Include="Sound\VoiceCallback.h" />
-    <ClInclude Include="Sound\WAVE.h" />
+    <ClInclude Include="Sound\WAVE\WAVE.h" />
     <ClInclude Include="Sound\Xaudio2.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>

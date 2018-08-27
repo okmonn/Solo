@@ -67,6 +67,24 @@
     <Filter Include="リソース ファイル\Shader">
       <UniqueIdentifier>{4574d4b7-421d-4d05-b17c-51518360e122}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{c6c7caac-2692-4f68-a49d-53f0f5eae0a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{bd286cac-3ecb-4015-9a74-54d4ab2aee60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\MIDI">
+      <UniqueIdentifier>{af2b9020-ceb7-48d4-99c6-149e5e063a6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\WAVE">
+      <UniqueIdentifier>{4d19bf8c-c272-41df-bf4d-19ddf457a4dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor">
+      <UniqueIdentifier>{d45b02f2-11bd-44cf-b261-0e455a6387e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\etc">
+      <UniqueIdentifier>{b3a88737-8a87-4005-a8a6-4eb034e49f52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -141,9 +159,6 @@
     <ClInclude Include="Input\KeyData.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="Sound\WAVE.h">
-      <Filter>Sound</Filter>
-    </ClInclude>
     <ClInclude Include="Sound\VoiceCallback.h">
       <Filter>Sound</Filter>
     </ClInclude>
@@ -153,8 +168,38 @@
     <ClInclude Include="Func.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Sound\MIDI_IN.h">
-      <Filter>Sound</Filter>
+    <ClInclude Include="Game\Scene\Scene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Title.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Play.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Result.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\MIDI\MIDI_IN.h">
+      <Filter>Sound\MIDI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\WAVE\WAVE.h">
+      <Filter>Sound\WAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Editor\Editor.h">
+      <Filter>Game\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\etc\Share.h">
+      <Filter>Game\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Editor\Character.h">
+      <Filter>Game\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Edit.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,17 +257,35 @@
     <ClCompile Include="Input\Input.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="Sound\WAVE.cpp">
-      <Filter>Sound</Filter>
-    </ClCompile>
     <ClCompile Include="Sound\Xaudio2.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="Func.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Sound\MIDI_IN.cpp">
-      <Filter>Sound</Filter>
+    <ClCompile Include="Game\Scene\Title.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Play.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Result.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\MIDI\MIDI_IN.cpp">
+      <Filter>Sound\MIDI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\WAVE\WAVE.cpp">
+      <Filter>Sound\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Editor\Editor.cpp">
+      <Filter>Game\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Edit.cpp">
+      <Filter>Game\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

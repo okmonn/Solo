@@ -1,7 +1,7 @@
 #include "Xaudio2.h"
 #define _NOT_USE_D3D12
 #include "../DirectX/Obj.h"
-#include "WAVE.h"
+#include "WAVE/WAVE.h"
 #include <tchar.h>
 #include <mutex>
 

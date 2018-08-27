@@ -80,6 +80,15 @@ public:
 	// MIDIデバイス数の取得
 	UINT GetMidiNum(void);
 
+	// ステータスバイトの取得
+	UCHAR GetMidiState(void);
+
+	// データバイト1の取得
+	UCHAR GetMidiData1(void);
+
+	// データバイト2の取得
+	UCHAR GetMidiData2(void);
+
 private:
 	// コンストラクタ
 	Union();

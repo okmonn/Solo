@@ -49,9 +49,9 @@ Out VS(Input input)
     input.pos.xy = float2(-1, 1) + (input.pos.xy / float2((window.x / 2), -(window.y / 2)));
     input.uv = input.uv / size;
 
-    input.pos = mul(world, input.pos);
-    input.pos = mul(view, input.pos);
-    input.pos = mul(projection, input.pos);
+    //input.pos = mul(world, input.pos);
+    //input.pos = mul(view, input.pos);
+    //input.pos = mul(projection, input.pos);
 
 	Out o;
 	o.svpos = input.pos;

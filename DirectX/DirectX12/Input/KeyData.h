@@ -1,10 +1,11 @@
 #pragma once
+// バージョン
+#define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 
 //キーボードテーブル
-static DIOBJECTDATAFORMAT keybordTbl[] =
-{
-	{ &GUID_Key,   0, 0x80000000 | DIDFT_BUTTON | DIDFT_MAKEINSTANCE(0),   0 },
+static DIOBJECTDATAFORMAT keybordTbl[] = {
+{ &GUID_Key,   0, 0x80000000 | DIDFT_BUTTON | DIDFT_MAKEINSTANCE(0),   0 },
 { &GUID_Key,   1, 0x80000000 | DIDFT_BUTTON | DIDFT_MAKEINSTANCE(1),   0 },
 { &GUID_Key,   2, 0x80000000 | DIDFT_BUTTON | DIDFT_MAKEINSTANCE(2),   0 },
 { &GUID_Key,   3, 0x80000000 | DIDFT_BUTTON | DIDFT_MAKEINSTANCE(3),   0 },

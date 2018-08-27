@@ -1,7 +1,7 @@
 #include "Union.h"
 #include "../Window/Window.h"
 #include "../Sound/Xaudio2.h"
-#include "../Sound/MIDI_IN.h"
+#include "../Sound/MIDI/MIDI_IN.h"
 #include "../Input/Input.h"
 #ifdef _DEBUG
 #include "Debug.h"
@@ -226,4 +226,22 @@ void Union::StopWave(UINT& index)
 UINT Union::GetMidiNum(void)
 {
 	return in->GetDevNum();
+}
+
+// ステータスバイトの取得
+UCHAR Union::GetMidiState(void)
+{
+	return MIDI_IN::GetData1();
+}
+
+// データバイト1の取得
+UCHAR Union::GetMidiData1(void)
+{
+	return MIDI_IN::GetData1();
+}
+
+// データバイト2の取得
+UCHAR Union::GetMidiData2(void)
+{
+	return MIDI_IN::GetData2();
 }
