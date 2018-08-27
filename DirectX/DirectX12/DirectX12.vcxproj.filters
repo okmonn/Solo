@@ -201,6 +201,9 @@
     <ClInclude Include="Game\Scene\Edit.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Input\InputData.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window\Window.cpp">

@@ -37,7 +37,7 @@ void Game::Run(void)
 {
 	Init();
 
-	while (CheckMsg() == true && CheckKey(DIK_ESCAPE) == false)
+	while (CheckMsg() == true && CheckKey(INPUT_ESCAPE) == false)
 	{
 		Set();
 

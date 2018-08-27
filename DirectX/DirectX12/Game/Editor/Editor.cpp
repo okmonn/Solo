@@ -50,7 +50,7 @@ void Editor::SetNote(LaneType type, unsigned int key1, unsigned int key2, unsign
 // •¶Žš“ü—Í
 void Editor::Scan(std::string m)
 {
-	while (!TriggerKey(DIK_RETURN))
+	while (!TriggerKey(INPUT_RETURN))
 	{
 		for (int i = 0; i < 256; ++i)
 		{
@@ -76,16 +76,16 @@ void Editor::Scan(std::string m)
 // ˆ—
 void Editor::UpData(void)
 {
-	SetNote(LaneType::TYPE_A, DIK_A,         DIK_S,     DIK_D);
-	SetNote(LaneType::TYPE_B, DIK_F,         DIK_G,     DIK_H);
-	SetNote(LaneType::TYPE_C, DIK_J,         DIK_K,     DIK_L);
-	SetNote(LaneType::TYPE_D, DIK_SEMICOLON, DIK_COLON, DIK_RBRACKET);
+	SetNote(LaneType::TYPE_A, INPUT_A,         INPUT_S,     INPUT_D);
+	SetNote(LaneType::TYPE_B, INPUT_F,         INPUT_G,     INPUT_H);
+	SetNote(LaneType::TYPE_C, INPUT_J,         INPUT_K,     INPUT_L);
+	SetNote(LaneType::TYPE_D, INPUT_SEMICOLON, INPUT_COLON, INPUT_RBRACKET);
 
-	if (TriggerKey(DIK_RSHIFT))
+	if (TriggerKey(INPUT_RSHIFT))
 	{
 		Save();
 	}
-	if (TriggerKey(DIK_LSHIFT))
+	if (TriggerKey(INPUT_LSHIFT))
 	{
 		Load();
 	}

@@ -81,6 +81,7 @@
     <ClInclude Include="Game\Scene\Title.h" />
     <ClInclude Include="Icon\Icon.h" />
     <ClInclude Include="Input\Input.h" />
+    <ClInclude Include="Input\InputData.h" />
     <ClInclude Include="Input\KeyData.h" />
     <ClInclude Include="Sound\MIDI\MIDI_IN.h" />
     <ClInclude Include="Sound\VoiceCallback.h" />
