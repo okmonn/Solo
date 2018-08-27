@@ -1,0 +1,45 @@
+#pragma once
+#include "Scene.h"
+#include <vector>
+#include <string>
+#include <iostream>
+#include <filesystem>
+
+namespace fs = std::experimental::filesystem;
+
+class Select :
+	public Scene
+{
+public:
+	// コンストラクタ
+	Select();
+	// デストラクタ
+	~Select();
+
+	// 描画
+	void Draw(void);
+
+	// 処理
+	void UpData(void);
+
+private:
+	// 配列に追加
+	void AddFileName(const fs::path& path);
+
+	// ディレクトリの読み込み
+	void LoadDir(const std::string& path);
+
+	// キー入力
+	void Key(void);
+
+	// MIDI入力
+	void Midi(void);
+
+
+	// ディレクトリ内のファイル名
+	std::vector<std::string>fileName;
+
+	// 関数ポインタ
+	void (Select::*func)(void);
+};
+

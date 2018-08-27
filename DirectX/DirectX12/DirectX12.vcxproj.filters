@@ -85,6 +85,9 @@
     <Filter Include="Game\etc">
       <UniqueIdentifier>{b3a88737-8a87-4005-a8a6-4eb034e49f52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DirectX\Font">
+      <UniqueIdentifier>{651b295e-be04-491f-a3da-77a926f99f7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -204,6 +207,12 @@
     <ClInclude Include="Input\InputData.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Scene\Select.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX\Font\Font.h">
+      <Filter>DirectX\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window\Window.cpp">
@@ -289,6 +298,12 @@
     </ClCompile>
     <ClCompile Include="Game\Scene\Edit.cpp">
       <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Select.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX\Font\Font.cpp">
+      <Filter>DirectX\Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

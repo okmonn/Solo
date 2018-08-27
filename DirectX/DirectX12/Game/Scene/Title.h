@@ -17,6 +17,14 @@ public:
 	void UpData(void);
 
 private:
+	// キー入力
+	void Key(void);
 
+	// MIDI入力
+	void Midi(void);
+
+
+	// 関数ポインタ
+	void (Title::*func)(void);
 };
 

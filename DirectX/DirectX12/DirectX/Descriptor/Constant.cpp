@@ -21,7 +21,7 @@ Constant::Constant(std::weak_ptr<Window>win, std::weak_ptr<Device>dev, std::weak
 	window = {static_cast<FLOAT>(this->win.lock()->GetX()), static_cast<FLOAT>(this->win.lock()->GetY())};
 	
 	SetWVP();
-	CreateHeap();
+	CreateHeap(RESOURCE_MAX, D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAGS::D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE);
 	CreateResource(0, ((sizeof(WVP) + 0xff) &~0xff));
 	CreateResource(1, ((sizeof(DirectX::XMFLOAT2) + 0xff) &~0xff));
 	CreateView(0, (sizeof(WVP) + 0xff) &~0xff, sizeof(WVP));
@@ -61,30 +61,7 @@ void Constant::SetWVP(void)
 	wvp.projection = DirectX::XMMatrixPerspectiveFovLH(RAD(90.0f), ((static_cast<FLOAT>(win.lock()->GetX()) / static_cast<FLOAT>(win.lock()->GetY()))), 0.5f, 500.0f);
 
 	//更新
-	wvp.world          = DirectX::XMMatrixIdentity();
-}
-
-// ヒープの生成
-HRESULT Constant::CreateHeap(void)
-{
-	//ヒープ設定用構造体
-	D3D12_DESCRIPTOR_HEAP_DESC desc = {};
-	desc.Flags          = D3D12_DESCRIPTOR_HEAP_FLAGS::D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-	desc.NodeMask       = 0;
-	desc.NumDescriptors = RESOURCE_MAX;
-	desc.Type           = D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-
-	//ヒープ生成
-	result = dev.lock()->Get()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&heap));
-	if (FAILED(result))
-	{
-		OutputDebugString(_T("\nヒープの生成：失敗\n"));
-		return result;
-	}
-
-	size = dev.lock()->Get()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE::D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
-
-	return result;
+	wvp.world      = DirectX::XMMatrixIdentity();
 }
 
 // リソースの生成

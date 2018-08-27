@@ -28,6 +28,7 @@
     <ClCompile Include="DirectX\Descriptor\Render.cpp" />
     <ClCompile Include="DirectX\Device.cpp" />
     <ClCompile Include="DirectX\Fence.cpp" />
+    <ClCompile Include="DirectX\Font\Font.cpp" />
     <ClCompile Include="DirectX\Pipe.cpp" />
     <ClCompile Include="DirectX\Root.cpp" />
     <ClCompile Include="DirectX\Swap.cpp" />
@@ -40,6 +41,7 @@
     <ClCompile Include="Game\Scene\Edit.cpp" />
     <ClCompile Include="Game\Scene\Play.cpp" />
     <ClCompile Include="Game\Scene\Result.cpp" />
+    <ClCompile Include="Game\Scene\Select.cpp" />
     <ClCompile Include="Game\Scene\Title.cpp" />
     <ClCompile Include="Input\Input.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -59,6 +61,7 @@
     <ClInclude Include="DirectX\Descriptor\Render.h" />
     <ClInclude Include="DirectX\Device.h" />
     <ClInclude Include="DirectX\Fence.h" />
+    <ClInclude Include="DirectX\Font\Font.h" />
     <ClInclude Include="DirectX\Obj.h" />
     <ClInclude Include="DirectX\Pipe.h" />
     <ClInclude Include="DirectX\Root.h" />
@@ -78,6 +81,7 @@
     <ClInclude Include="Game\Scene\Play.h" />
     <ClInclude Include="Game\Scene\Result.h" />
     <ClInclude Include="Game\Scene\Scene.h" />
+    <ClInclude Include="Game\Scene\Select.h" />
     <ClInclude Include="Game\Scene\Title.h" />
     <ClInclude Include="Icon\Icon.h" />
     <ClInclude Include="Input\Input.h" />
