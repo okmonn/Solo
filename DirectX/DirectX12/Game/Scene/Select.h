@@ -2,10 +2,6 @@
 #include "Scene.h"
 #include <vector>
 #include <string>
-#include <iostream>
-#include <filesystem>
-
-namespace fs = std::experimental::filesystem;
 
 class Select :
 	public Scene
@@ -23,12 +19,6 @@ public:
 	void UpData(void);
 
 private:
-	// 配列に追加
-	void AddFileName(const fs::path& path);
-
-	// ディレクトリの読み込み
-	void LoadDir(const std::string& path);
-
 	// キー入力
 	void Key(void);
 

@@ -28,7 +28,6 @@
     <ClCompile Include="DirectX\Descriptor\Render.cpp" />
     <ClCompile Include="DirectX\Device.cpp" />
     <ClCompile Include="DirectX\Fence.cpp" />
-    <ClCompile Include="DirectX\Font\Font.cpp" />
     <ClCompile Include="DirectX\Pipe.cpp" />
     <ClCompile Include="DirectX\Root.cpp" />
     <ClCompile Include="DirectX\Swap.cpp" />
@@ -61,7 +60,6 @@
     <ClInclude Include="DirectX\Descriptor\Render.h" />
     <ClInclude Include="DirectX\Device.h" />
     <ClInclude Include="DirectX\Fence.h" />
-    <ClInclude Include="DirectX\Font\Font.h" />
     <ClInclude Include="DirectX\Obj.h" />
     <ClInclude Include="DirectX\Pipe.h" />
     <ClInclude Include="DirectX\Root.h" />

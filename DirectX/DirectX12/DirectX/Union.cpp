@@ -16,7 +16,6 @@
 #include "Root.h"
 #include "Pipe.h"
 #include "Descriptor/Constant.h"
-#include "Font/Font.h"
 #include "Texture/Texture.h"
 #include <tchar.h>
 
@@ -65,7 +64,6 @@ void Union::Create(void)
 	root->ComPixel(L"Shader/BasicShader.hlsl", "PS");
 	pipe     = std::make_shared<Pipe>(dev, swap, root);
 	constant = std::make_shared <Constant>(win, dev, list);
-	font     = std::make_shared<Font>(dev, list);
 	tex      = std::make_shared<Texture>(dev, list);
 
 	ViewPort();
@@ -246,4 +244,37 @@ UCHAR Union::GetMidiData1(void)
 UCHAR Union::GetMidiData2(void)
 {
 	return MIDI_IN::GetData2();
+}
+
+// ファイルを返す
+std::string Union::GetFile(const fs::path& p)
+{
+	std::string m;
+	//ファイルの場合
+	if (fs::is_regular_file(p))
+	{
+		m = p.filename().string();
+	}
+	else if (fs::is_directory(p))
+	{
+		m = p.string();
+	}
+
+	return m;
+}
+
+// ディレクトリのファイル列挙
+std::vector<std::string> Union::GetDirFile(const std::string & point)
+{
+	//列挙の起点
+	fs::path p(point.c_str());
+
+	std::vector<std::string>fileName;
+
+	for (auto& i : fs::recursive_directory_iterator(p))
+	{
+		fileName.push_back(GetFile(i));
+	}
+
+	return fileName;
 }
