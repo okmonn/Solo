@@ -16,6 +16,7 @@
 #include "Root.h"
 #include "Pipe.h"
 #include "Descriptor/Constant.h"
+#include "Font/Font.h"
 #include "Texture/Texture.h"
 #include <tchar.h>
 
@@ -64,6 +65,7 @@ void Union::Create(void)
 	root->ComPixel(L"Shader/BasicShader.hlsl", "PS");
 	pipe     = std::make_shared<Pipe>(dev, swap, root);
 	constant = std::make_shared <Constant>(win, dev, list);
+	font     = std::make_shared<Font>(dev, list);
 	tex      = std::make_shared<Texture>(dev, list);
 
 	ViewPort();

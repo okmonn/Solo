@@ -21,6 +21,7 @@ class Fence;
 class Root;
 class Pipe;
 class Constant;
+class Font;
 class Texture;
 
 class Union
@@ -169,6 +170,9 @@ private:
 
 	// 定数バッファ
 	std::shared_ptr<Constant>constant;
+
+	// フォント
+	std::shared_ptr<Font>font;
 
 	// テクスチャ
 	std::shared_ptr<Texture>tex;
