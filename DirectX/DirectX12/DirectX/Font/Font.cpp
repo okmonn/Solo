@@ -12,7 +12,7 @@ const MAT2 mat = {
 
 // コンストラクタ
 Font::Font(std::weak_ptr<Device>dev, std::weak_ptr<List>list) :
-	font(nullptr), old(nullptr), size(36), weight(500), name(L"ＭＳ Ｐ明朝"), hdc(GetDC(nullptr))
+	font(nullptr), old(nullptr), size(36), weight(500), level(16), name(L"ＭＳ Ｐ明朝"), hdc(GetDC(nullptr))
 {
 	this->dev = dev;
 	this->list = list;
@@ -21,12 +21,14 @@ Font::Font(std::weak_ptr<Device>dev, std::weak_ptr<List>list) :
 	GetTextMetrics(hdc, &tm);
 	gm = {};
 
+	bmp = {};
+
 	CreateFnt();
 }
 
 // コンストラクタ
 Font::Font(const std::wstring & path, std::weak_ptr<Device>dev, std::weak_ptr<List>list) :
-	font(nullptr), old(nullptr), size(36), weight(500), name(path), hdc(GetDC(nullptr))
+	font(nullptr), old(nullptr), size(36), weight(500), level(16), name(path), hdc(GetDC(nullptr))
 {
 	this->dev = dev;
 	this->list = list;
@@ -159,10 +161,23 @@ HRESULT Font::DrawFont(void)
 	DWORD size = GetGlyphOutlineW(hdc, code, GGO_GRAY4_BITMAP, &gm, 0, nullptr, &mat);
 
 	//配列のメモリ確保
-	bmp.data.resize(size);
+	std::vector<BYTE>dummy(size);
+	bmp.image.resize(size);
 
 	//データを格納
-	GetGlyphOutlineW(hdc, code, GGO_GRAY4_BITMAP, &gm, size, bmp.data.data(), &mat);
+	GetGlyphOutlineW(hdc, code, GGO_GRAY4_BITMAP, &gm, size, dummy.data(), &mat);
+
+	UINT wedth = (gm.gmBlackBoxX + 3) / 4 * 4;
+	DWORD alpha = 0;
+
+	for (UINT y = 0; y < gm.gmBlackBoxY; ++y)
+	{
+		for (UINT x = 0; x < wedth; ++x)
+		{
+			alpha = dummy[y * wedth + x] * 255 / level;
+			bmp.image[y * wedth + x] = static_cast<BYTE>((alpha << 24) | 0x00ffffff);
+		}
+	}
 
 	result = CreateConHeap();
 	result = CreateConResource();

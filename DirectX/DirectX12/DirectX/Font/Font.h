@@ -15,10 +15,11 @@ class Font :
 		//リソース
 		ID3D12Resource* resource;
 	};
+
 	// BMPデータ
 	struct BMP {
 		//データ
-		std::vector<BYTE>data;
+		std::vector<BYTE>image;
 		//サイズX
 		LONG x;
 		//サイズY
@@ -88,6 +89,9 @@ private:
 
 	// フォントの太さ
 	LONG weight;
+
+	// 階調レベル
+	int level;
 
 	// フォント名
 	std::wstring name;
