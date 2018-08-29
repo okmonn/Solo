@@ -4,10 +4,13 @@
 #include "../../Func.h"
 using namespace func;
 
+UINT n = 0;
+
 // コンストラクタ
 Title::Title()
 {
 	func = (GetMidiDevNum() == 0) ? &Title::Key : &Title::Midi;
+	LoadImg(n, "img/sample.png");
 }
 
 // デストラクタ
@@ -18,6 +21,7 @@ Title::~Title()
 // 描画
 void Title::Draw(void)
 {
+	func::Draw(n, 0, 0);
 }
 
 // キー入力

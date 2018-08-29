@@ -5,13 +5,16 @@
 class Device;
 class Swap;
 class Root;
+class Compiler;
 
 class Pipe :
 	public Obj
 {
 public:
 	// コンストラクタ
-	Pipe(std::weak_ptr<Device>dev, std::weak_ptr<Swap>swap, std::weak_ptr<Root>root);
+	Pipe(const LPCWSTR& path, 
+		std::weak_ptr<Device>dev, std::weak_ptr<Swap>swap, std::weak_ptr<Root>root, std::weak_ptr<Compiler>com,
+		D3D12_PRIMITIVE_TOPOLOGY_TYPE type = D3D12_PRIMITIVE_TOPOLOGY_TYPE::D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE);
 	// デストラクタ
 	~Pipe();
 
@@ -25,6 +28,9 @@ private:
 	HRESULT CreatePipe(void);
 
 
+	// パス
+	LPCWSTR path;
+
 	// デバイス
 	std::weak_ptr<Device>dev;
 
@@ -34,7 +40,13 @@ private:
 	// ルートシグネチャ
 	std::weak_ptr<Root>root;
 
+	// シェーダコンパイラー
+	std::weak_ptr<Compiler>com;
+
 	// パイプライン
 	ID3D12PipelineState* pipe;
+
+	// プリミティブタイプ
+	D3D12_PRIMITIVE_TOPOLOGY_TYPE type;
 };
 

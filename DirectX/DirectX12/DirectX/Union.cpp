@@ -1,7 +1,7 @@
 #include "Union.h"
 #include "../Window/Window.h"
 #include "../Sound/Xaudio2.h"
-#include "../Sound/MIDI/MIDI_IN.h"
+#include "../Sound/MIDI_IN.h"
 #include "../Input/Input.h"
 #ifdef _DEBUG
 #include "Debug.h"
@@ -14,6 +14,7 @@
 #include "Descriptor/Depth.h"
 #include "Fence.h"
 #include "Root.h"
+#include "Compiler/Compiler.h"
 #include "Pipe.h"
 #include "Descriptor/Constant.h"
 #include "Texture/Texture.h"
@@ -45,26 +46,25 @@ void Union::ChangeWindowSize(UINT x, UINT y)
 // クラスのインスタンス化
 void Union::Create(void)
 {
-	win      = std::make_shared<Window>(x, y);
-	audio    = std::make_shared<Xaudio2>();
-	in       = std::make_shared<MIDI_IN>();
-	input    = std::make_shared<Input>(win);
+	win = std::make_shared<Window>(x, y);
+	audio = std::make_shared<Xaudio2>();
+	in = std::make_shared<MIDI_IN>();
+	input = std::make_shared<Input>(win);
 #ifdef _DEBUG
-	debug    = std::make_shared<Debug>();
+	debug = std::make_shared<Debug>();
 #endif
-	dev      = std::make_shared<Device>();
-	queue    = std::make_shared<Queue>(dev);
-	list     = std::make_shared<List>(dev);
-	swap     = std::make_shared<Swap>(win, queue);
-	render   = std::make_shared<Render>(dev, list, swap);
-	depth    = std::make_shared<Depth>(win, dev, list, swap);
-	fence    = std::make_shared<Fence>(dev, queue);
-	root     = std::make_shared<Root>(dev);
-	root->ComVertex(L"Shader/BasicShader.hlsl", "VS");
-	root->ComPixel(L"Shader/BasicShader.hlsl", "PS");
-	pipe     = std::make_shared<Pipe>(dev, swap, root);
+	dev = std::make_shared<Device>();
+	queue = std::make_shared<Queue>(dev);
+	list = std::make_shared<List>(dev);
+	swap = std::make_shared<Swap>(win, queue);
+	render = std::make_shared<Render>(dev, list, swap);
+	depth = std::make_shared<Depth>(win, dev, list, swap);
+	fence = std::make_shared<Fence>(dev, queue);
+	root = std::make_shared<Root>(dev);
+	com = std::make_shared<Compiler>();
+	pipe = std::make_shared<Pipe>(L"Shader/BasicShader.hlsl", dev, swap, root, com);
 	constant = std::make_shared <Constant>(win, dev, list);
-	tex      = std::make_shared<Texture>(dev, list);
+	tex = std::make_shared<Texture>(dev, list);
 
 	ViewPort();
 	Scissor();
@@ -228,26 +228,26 @@ UINT Union::GetMidiNum(void)
 	return in->GetDevNum();
 }
 
-// ステータスバイトの取得
+// MIDIステータスバイトの取得
 UCHAR Union::GetMidiState(void)
 {
-	return MIDI_IN::GetData1();
+	return in->GetState();
 }
 
-// データバイト1の取得
+// MIDIデータバイト1の取得
 UCHAR Union::GetMidiData1(void)
 {
-	return MIDI_IN::GetData1();
+	return in->GetData1();
 }
 
-// データバイト2の取得
+// MIDIデータバイト2の取得
 UCHAR Union::GetMidiData2(void)
 {
-	return MIDI_IN::GetData2();
+	return in->GetData2();
 }
 
 // ファイルを返す
-std::string Union::GetFile(const fs::path& p)
+std::string Union::GetFile(const fs::path & p)
 {
 	std::string m;
 	//ファイルの場合

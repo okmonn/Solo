@@ -23,6 +23,7 @@ class Render;
 class Depth;
 class Fence;
 class Root;
+class Compiler;
 class Pipe;
 class Constant;
 class Texture;
@@ -84,13 +85,13 @@ public:
 	// MIDIデバイス数の取得
 	UINT GetMidiNum(void);
 
-	// ステータスバイトの取得
+	// MIDIステータスバイトの取得
 	UCHAR GetMidiState(void);
 
-	// データバイト1の取得
+	// MIDIデータバイト1の取得
 	UCHAR GetMidiData1(void);
 
-	// データバイト2の取得
+	// MIDIデータバイト2の取得
 	UCHAR GetMidiData2(void);
 
 	// ディレクトリのファイル列挙
@@ -115,6 +116,7 @@ private:
 
 	// ファイルを返す
 	std::string GetFile(const fs::path& p);
+
 
 	// 画面サイズX
 	UINT x;
@@ -173,6 +175,9 @@ private:
 
 	// ルートシグネチャ
 	std::shared_ptr<Root>root;
+
+	// シェーダコンパイル
+	std::shared_ptr<Compiler>com;
 
 	// パイプライン
 	std::shared_ptr<Pipe>pipe;
