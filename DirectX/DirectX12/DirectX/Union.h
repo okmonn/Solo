@@ -96,6 +96,8 @@ public:
 
 	// ディレクトリのファイル列挙
 	std::vector<std::string> GetDirFile(const std::string& point);
+	// ディレクトリのファイル列挙
+	std::vector<std::wstring> GetDirFileW(const std::wstring& point);
 
 private:
 	// コンストラクタ
@@ -116,6 +118,8 @@ private:
 
 	// ファイルを返す
 	std::string GetFile(const fs::path& p);
+	// ファイルを返す
+	std::wstring GetFileW(const fs::path& p);
 
 
 	// 画面サイズX

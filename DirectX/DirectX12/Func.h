@@ -66,4 +66,6 @@ namespace func {
 
 	// 指定したディレクトリのファイル名取得
 	std::vector<std::string> GetDirFile(const std::string& path);
+	// 指定したディレクトリのファイル名取得
+	std::vector<std::wstring> GetDirFile(const std::wstring& path);
 }

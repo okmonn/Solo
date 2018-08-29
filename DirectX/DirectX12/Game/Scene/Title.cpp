@@ -3,6 +3,7 @@
 #include "Select.h"
 #include "../../Func.h"
 using namespace func;
+#include <stdio.h>
 
 UINT n = 0;
 

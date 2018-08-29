@@ -263,6 +263,23 @@ std::string Union::GetFile(const fs::path & p)
 	return m;
 }
 
+// ファイルを返す
+std::wstring Union::GetFileW(const fs::path & p)
+{
+	std::wstring m;
+	//ファイルの場合
+	if (fs::is_regular_file(p))
+	{
+		m = p.filename().wstring();
+	}
+	else if (fs::is_directory(p))
+	{
+		m = p.wstring();
+	}
+
+	return m;
+}
+
 // ディレクトリのファイル列挙
 std::vector<std::string> Union::GetDirFile(const std::string & point)
 {
@@ -274,6 +291,22 @@ std::vector<std::string> Union::GetDirFile(const std::string & point)
 	for (auto& i : fs::recursive_directory_iterator(p))
 	{
 		fileName.push_back(GetFile(i));
+	}
+
+	return fileName;
+}
+
+// ディレクトリのファイル列挙
+std::vector<std::wstring> Union::GetDirFileW(const std::wstring & point)
+{
+	//列挙の起点
+	fs::path p(point.c_str());
+
+	std::vector<std::wstring>fileName;
+
+	for (auto& i : fs::recursive_directory_iterator(p))
+	{
+		fileName.push_back(GetFileW(i));
 	}
 
 	return fileName;

@@ -114,3 +114,9 @@ std::vector<std::string> func::GetDirFile(const std::string & path)
 {
 	return Union::Get().GetDirFile(path);
 }
+
+// 指定したディレクトリのファイル名取得
+std::vector<std::wstring> func::GetDirFile(const std::wstring & path)
+{
+	return Union::Get().GetDirFileW(path);
+}
