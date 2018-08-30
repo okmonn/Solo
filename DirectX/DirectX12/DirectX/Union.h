@@ -1,5 +1,6 @@
 #pragma once
 #include "../etc/Vector2.h"
+#include "../etc/Vector3.h"
 #include <d3d12.h>
 #include <string>
 #include <vector>
@@ -26,6 +27,7 @@ class Root;
 class Compiler;
 class Pipe;
 class Constant;
+class Point;
 class Texture;
 
 class Union
@@ -60,6 +62,9 @@ public:
 
 	// トリガーキー入力
 	bool TriggerKey(UINT index);
+
+	// 点の描画
+	void DrawPoint(const Vec2f& pos, const Vec3f& color);
 
 	// 画像読み込み
 	void LoadImg(UINT& index, const std::string& fileName);
@@ -96,8 +101,7 @@ public:
 
 	// ディレクトリのファイル列挙
 	std::vector<std::string> GetDirFile(const std::string& point);
-	// ディレクトリのファイル列挙
-	std::vector<std::wstring> GetDirFileW(const std::wstring& point);
+	std::vector<std::wstring> GetDirFile(const std::wstring& point);
 
 private:
 	// コンストラクタ
@@ -118,7 +122,6 @@ private:
 
 	// ファイルを返す
 	std::string GetFile(const fs::path& p);
-	// ファイルを返す
 	std::wstring GetFileW(const fs::path& p);
 
 
@@ -127,6 +130,9 @@ private:
 
 	// 画面サイズY
 	UINT y;
+
+	// アルファ値
+	float alpha;
 
 	// メッセージ
 	MSG msg;
@@ -185,9 +191,13 @@ private:
 
 	// パイプライン
 	std::shared_ptr<Pipe>pipe;
+	std::shared_ptr<Pipe>pointPipe;
 
 	// 定数バッファ
 	std::shared_ptr<Constant>constant;
+
+	// 点
+	std::shared_ptr<Point>point;
 
 	// テクスチャ
 	std::shared_ptr<Texture>tex;

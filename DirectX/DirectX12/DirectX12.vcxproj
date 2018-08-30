@@ -28,6 +28,7 @@
     <ClCompile Include="DirectX\Descriptor\Descriptor.cpp" />
     <ClCompile Include="DirectX\Descriptor\Render.cpp" />
     <ClCompile Include="DirectX\Device.cpp" />
+    <ClCompile Include="DirectX\Draw\Point.cpp" />
     <ClCompile Include="DirectX\Fence.cpp" />
     <ClCompile Include="DirectX\Pipe.cpp" />
     <ClCompile Include="DirectX\Root.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="DirectX\Descriptor\Descriptor.h" />
     <ClInclude Include="DirectX\Descriptor\Render.h" />
     <ClInclude Include="DirectX\Device.h" />
+    <ClInclude Include="DirectX\Draw\Point.h" />
     <ClInclude Include="DirectX\Fence.h" />
     <ClInclude Include="DirectX\Obj.h" />
     <ClInclude Include="DirectX\Pipe.h" />
@@ -97,6 +99,18 @@
     <ResourceCompile Include="Icon\Icon.rc" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="..\..\..\-Task\DirectX\DirectX12\Shader\PointShader.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+    </FxCompile>
     <FxCompile Include="Shader\BasicShader.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </EntryPointName>

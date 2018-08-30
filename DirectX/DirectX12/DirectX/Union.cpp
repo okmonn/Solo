@@ -17,6 +17,7 @@
 #include "Compiler/Compiler.h"
 #include "Pipe.h"
 #include "Descriptor/Constant.h"
+#include "Draw/Point.h"
 #include "Texture/Texture.h"
 #include <tchar.h>
 
@@ -29,6 +30,7 @@ Union::Union()
 	viewPort = {};
 	scissor = {};
 	barrier = {};
+	alpha = 1.0f;
 }
 
 // デストラクタ
@@ -63,7 +65,9 @@ void Union::Create(void)
 	root = std::make_shared<Root>(dev);
 	com = std::make_shared<Compiler>();
 	pipe = std::make_shared<Pipe>(L"Shader/BasicShader.hlsl", dev, swap, root, com);
+	pointPipe = std::make_shared<Pipe>(L"Shader/PointShader.hlsl", dev, swap, root, com, D3D12_PRIMITIVE_TOPOLOGY_TYPE::D3D12_PRIMITIVE_TOPOLOGY_TYPE_POINT);
 	constant = std::make_shared <Constant>(win, dev, list);
+	point = std::make_shared<Point>(dev, list);
 	tex = std::make_shared<Texture>(dev, list);
 
 	ViewPort();
@@ -147,25 +151,30 @@ void Union::Set(void)
 	render->SetRender(depth->GetHeap());
 
 	depth->SetDepth();
-
-	constant->UpDataWindow();
-	constant->SetConstant(1, 1);
 }
 
 // 実行
 void Union::Do(void)
 {
+	list->SetPipe(pointPipe->Get());
+	constant->SetConstant();
+	point->Draw();
+
 	Barrier(D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATES::D3D12_RESOURCE_STATE_PRESENT);
 
 	list->Close();
 
 	//コマンド実行.
-	ID3D12CommandList* ppCmdLists[] = { list->GetList() };
+	ID3D12CommandList* ppCmdLists[] = {
+		list->GetList(),
+	};
 	queue->Get()->ExecuteCommandLists(_countof(ppCmdLists), ppCmdLists);
 
 	swap->Present();
 
 	fence->Wait();
+
+	point->Reset();
 }
 
 // キー入力
@@ -180,6 +189,12 @@ bool Union::TriggerKey(UINT index)
 	return input->TriggerKey(index);
 }
 
+// 点の描画
+void Union::DrawPoint(const Vec2f & pos, const Vec3f & color)
+{
+	point->AddList(pos, color);
+}
+
 // 画像読み込み
 void Union::LoadImg(UINT & index, const std::string & fileName)
 {
@@ -189,19 +204,19 @@ void Union::LoadImg(UINT & index, const std::string & fileName)
 // 描画
 void Union::Draw(UINT& index, const Vec2f& pos, UINT turnX, UINT turnY)
 {
-	tex->Draw(index, pos, turnX, turnY);
+	tex->Draw(index, pos, alpha, turnX, turnY);
 }
 
 // 描画・サイズ指定
 void Union::Draw(UINT & index, const Vec2f & pos, const Vec2f & size, UINT turnX, UINT turnY)
 {
-	tex->Draw(index, pos, size, turnX, turnY);
+	tex->Draw(index, pos, size, alpha, turnX, turnY);
 }
 
 // 描画・サイズ指定・分割
 void Union::Draw(UINT& index, const Vec2f& pos, const Vec2f& size, const Vec2f& rect, const Vec2f& rectSize, UINT turnX, UINT turnY)
 {
-	tex->Draw(index, pos, size, rect, rectSize, turnX, turnY);
+	tex->Draw(index, pos, size, rect, rectSize, alpha, turnX, turnY);
 }
 
 // WAVE読み込み
@@ -257,7 +272,7 @@ std::string Union::GetFile(const fs::path & p)
 	}
 	else if (fs::is_directory(p))
 	{
-		m = p.string();
+		//m = p.string();
 	}
 
 	return m;
@@ -274,7 +289,7 @@ std::wstring Union::GetFileW(const fs::path & p)
 	}
 	else if (fs::is_directory(p))
 	{
-		m = p.wstring();
+		//m = p.wstring();
 	}
 
 	return m;
@@ -290,14 +305,18 @@ std::vector<std::string> Union::GetDirFile(const std::string & point)
 
 	for (auto& i : fs::recursive_directory_iterator(p))
 	{
-		fileName.push_back(GetFile(i));
+		auto dummy = GetFile(i);
+		if (dummy.size() > 0)
+		{
+			fileName.push_back(dummy);
+		}
 	}
 
 	return fileName;
 }
 
 // ディレクトリのファイル列挙
-std::vector<std::wstring> Union::GetDirFileW(const std::wstring & point)
+std::vector<std::wstring> Union::GetDirFile(const std::wstring & point)
 {
 	//列挙の起点
 	fs::path p(point.c_str());
@@ -306,7 +325,11 @@ std::vector<std::wstring> Union::GetDirFileW(const std::wstring & point)
 
 	for (auto& i : fs::recursive_directory_iterator(p))
 	{
-		fileName.push_back(GetFileW(i));
+		auto dummy = GetFileW(i);
+		if (dummy.size() > 0)
+		{
+			fileName.push_back(dummy);
+		}
 	}
 
 	return fileName;

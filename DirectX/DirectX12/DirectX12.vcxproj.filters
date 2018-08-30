@@ -88,6 +88,9 @@
     <Filter Include="DirectX\Compiler">
       <UniqueIdentifier>{7059e212-3807-4c72-b381-4e7788acb313}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DirectX\Draw">
+      <UniqueIdentifier>{0740381e-da48-4cec-bcdc-cd3c92f685af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -213,6 +216,9 @@
     <ClInclude Include="DirectX\Compiler\Compiler.h">
       <Filter>DirectX\Compiler</Filter>
     </ClInclude>
+    <ClInclude Include="DirectX\Draw\Point.h">
+      <Filter>DirectX\Draw</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window\Window.cpp">
@@ -305,6 +311,9 @@
     <ClCompile Include="DirectX\Compiler\Compiler.cpp">
       <Filter>DirectX\Compiler</Filter>
     </ClCompile>
+    <ClCompile Include="DirectX\Draw\Point.cpp">
+      <Filter>DirectX\Draw</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Icon\Icon.rc">
@@ -313,6 +322,9 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\BasicShader.hlsl">
+      <Filter>リソース ファイル\Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\-Task\DirectX\DirectX12\Shader\PointShader.hlsl">
       <Filter>リソース ファイル\Shader</Filter>
     </FxCompile>
   </ItemGroup>

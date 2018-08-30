@@ -1,5 +1,6 @@
 #include "Func.h"
 #include "DirectX/Union.h"
+#include <Windows.h>
 
 // ウィンドウサイズのセット
 void func::SetWindowSize(unsigned int x, unsigned int y)
@@ -41,6 +42,12 @@ bool func::CheckKey(unsigned int index)
 bool func::TriggerKey(unsigned int index)
 {
 	return Union::Get().TriggerKey(index);
+}
+
+// 点の描画
+void func::DrawPoint(float x, float y, float r, float g, float b)
+{
+	Union::Get().DrawPoint({ x, y }, { r, g, b });
 }
 
 // 画像読み込み
@@ -118,5 +125,19 @@ std::vector<std::string> func::GetDirFile(const std::string & path)
 // 指定したディレクトリのファイル名取得
 std::vector<std::wstring> func::GetDirFile(const std::wstring & path)
 {
-	return Union::Get().GetDirFileW(path);
+	return Union::Get().GetDirFile(path);
+}
+
+// ログインユーザーネーム取得
+std::wstring func::GetName(void)
+{
+	std::wstring name;
+	DWORD size = 0;
+	
+	GetUserName(&name[0], &size);
+
+	name.resize(size);
+	GetUserName(&name[0], &size);
+
+	return name;
 }
