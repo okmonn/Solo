@@ -6,12 +6,14 @@ using namespace func;
 #include <stdio.h>
 
 UINT n = 0;
+UINT a = 0;
 
 // コンストラクタ
 Title::Title()
 {
 	func = (GetMidiDevNum() == 0) ? &Title::Key : &Title::Midi;
 	LoadImg(n, "img/sample.png");
+	LoadWave(a, "wave/sample1.wav");
 }
 
 // デストラクタ
@@ -44,4 +46,5 @@ void Title::Midi(void)
 void Title::UpData(void)
 {
 	(this->*func)();
+	PlayWave(a);
 }
