@@ -332,6 +332,9 @@
     <ClCompile Include="Game\Scene\Edit.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Scene\Scene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Icon\Icon.rc">

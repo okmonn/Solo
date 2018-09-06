@@ -3,11 +3,9 @@
 #include"../Func.h"
 using namespace func;
 
-//ウィンドウサイズ
-const Vec2 winSize = { 640U, 480U };
-
 // コンストラクタ
-Game::Game()
+Game::Game() : 
+	winSize({ 640, 480 })
 {
 }
 

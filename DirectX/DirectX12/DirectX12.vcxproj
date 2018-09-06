@@ -45,6 +45,7 @@
     <ClCompile Include="Game\Scene\Edit.cpp" />
     <ClCompile Include="Game\Scene\Play.cpp" />
     <ClCompile Include="Game\Scene\Result.cpp" />
+    <ClCompile Include="Game\Scene\Scene.cpp" />
     <ClCompile Include="Game\Scene\Select.cpp" />
     <ClCompile Include="Game\Scene\Title.cpp" />
     <ClCompile Include="Input\Input.cpp" />

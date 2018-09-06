@@ -1,4 +1,5 @@
 #pragma once
+#include "../etc/Vector2.h"
 #include <memory>
 
 class Scene;
@@ -21,6 +22,11 @@ public:
 	// 処理
 	void Run(void);
 
+	// ウィンドウサイズの取得
+	Vec2 GetWinSize(void) const {
+		return winSize;
+	}
+
 private:
 	// コンストラクタ
 	Game();
@@ -38,4 +44,7 @@ private:
 
 	// シーン
 	std::shared_ptr<Scene>scene;
+
+	// ウィンドウサイズ
+	Vec2 winSize;
 };

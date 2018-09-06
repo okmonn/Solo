@@ -17,6 +17,9 @@ public:
 	void UpData(void);
 
 private:
+	// ‰æ‘œ“Ç‚İ‚İ
+	void Load(void);
+
 	// ƒL[“ü—Í
 	void Key(void);
 
