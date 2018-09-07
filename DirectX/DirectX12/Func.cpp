@@ -128,9 +128,9 @@ void func::LoadWave(unsigned int& index, const std::string fileName)
 }
 
 // WAVEÇÃçƒê∂
-void func::PlayWave(unsigned int& index)
+void func::PlayWave(unsigned int& index, bool loop)
 {
-	Union::Get().PlayWave(index);
+	Union::Get().PlayWave(index, loop);
 }
 
 // WAVEÇÃí‚é~

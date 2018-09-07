@@ -72,7 +72,7 @@ namespace func {
 	void LoadWave(unsigned int& index, const std::string fileName);
 
 	// WAVE‚ÌÄ¶
-	void PlayWave(unsigned int& index);
+	void PlayWave(unsigned int& index, bool loop = false);
 
 	// WAVE‚Ì’â~
 	void StopWave(unsigned int& index);

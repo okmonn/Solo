@@ -373,9 +373,9 @@ void Union::LoadWave(UINT& index, const std::string & fileName)
 }
 
 // WAVE‚ÌÄ¶
-void Union::PlayWave(UINT& index)
+void Union::PlayWave(UINT& index, bool loop)
 {
-	audio->Play(index);
+	audio->Play(index, loop);
 }
 
 // WAVE‚ÌÄ¶’â~

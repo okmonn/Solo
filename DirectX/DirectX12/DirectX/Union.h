@@ -87,13 +87,13 @@ public:
 	void LoadImg(UINT& index, const std::string& fileName);
 
 	// 描画
-	void Draw(UINT& index, const Vec2f& pos, UINT turnX = 0, UINT turnY = 0);
+	void Draw(UINT& index, const Vec2f& pos, UINT turnX, UINT turnY);
 
 	// 描画・サイズ指定
-	void Draw(UINT& index, const Vec2f& pos, const Vec2f& size, UINT turnX = 0, UINT turnY = 0);
+	void Draw(UINT& index, const Vec2f& pos, const Vec2f& size, UINT turnX, UINT turnY);
 
 	// 描画・サイズ指定・分割
-	void Draw(UINT& index, const Vec2f& pos, const Vec2f& size, const Vec2f& rect, const Vec2f& rectSize, UINT turnX = 0, UINT turnY = 0);
+	void Draw(UINT& index, const Vec2f& pos, const Vec2f& size, const Vec2f& rect, const Vec2f& rectSize, UINT turnX, UINT turnY);
 
 	// 画像の消去
 	void DeleteImg(UINT& index);
@@ -111,7 +111,7 @@ public:
 	void LoadWave(UINT& index, const std::string& fileName);
 
 	// WAVEの再生
-	void PlayWave(UINT& index);
+	void PlayWave(UINT& index, bool loop);
 
 	// WAVEの再生停止
 	void StopWave(UINT& index);
