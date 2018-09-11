@@ -156,9 +156,6 @@
     <ClInclude Include="Source\Device\Device.h">
       <Filter>Source\Device</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Debug\Debug.h">
-      <Filter>Source\Debug</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Command\Command.h">
       <Filter>Source\Command</Filter>
     </ClInclude>
@@ -303,13 +300,13 @@
     <ClInclude Include="GameSource\etc\Share.h">
       <Filter>GameSource\etc</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Debuger\Debug.h">
+      <Filter>Source\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Device\Device.cpp">
       <Filter>Source\Device</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Debug\Debug.cpp">
-      <Filter>Source\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Source\Command\List\List.cpp">
       <Filter>Source\Command\List</Filter>
@@ -415,6 +412,9 @@
     </ClCompile>
     <ClCompile Include="GameSource\Scene\Title\Title.cpp">
       <Filter>GameSource\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Debuger\Debug.cpp">
+      <Filter>Source\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
