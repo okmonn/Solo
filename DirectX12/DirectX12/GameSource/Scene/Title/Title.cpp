@@ -5,10 +5,14 @@
 #include "../../../Source/Func/Func.h"
 using namespace func;
 
+// フェード速度
+#define FADE_SPEED 0.01f;
+
 // コンストラクタ
 Title::Title()
 {
-	func = (GetMidiDevNum() <= 0) ? &Title::Key : &Title::Midi;
+	draw = &Title::FadeIn;
+	updata = (GetMidiDevNum() <= 0) ? &Title::Key : &Title::Midi;
 
 	Load();
 }
@@ -21,20 +25,56 @@ Title::~Title()
 // 画像読み込み
 void Title::Load(void)
 {
-	AddImg("Material/img/TitleName.png");
+	AddImg("Material/img/TitleName.png", { (float)Game::Get().GetWinSize().x, (float)Game::Get().GetWinSize().y });
+}
+
+// フェードイン
+void Title::FadeIn(void)
+{
+	alpha += FADE_SPEED;
+
+	SetAlpha(alpha);
+	Scene::Draw("TitleName");
+
+	if (alpha >= 1.0f)
+	{
+		alpha = 1.0f;
+		draw = &Title::NormalDraw;
+	}
+	else
+	{
+		SetAlpha(1.0f);
+	}
+}
+
+// フェードアウト
+void Title::FadeOut(void)
+{
+	alpha -= FADE_SPEED;
+
+	SetAlpha(alpha);
+	Scene::Draw("TitleName");
+
+	if (alpha <= 0.0f)
+	{
+		Game::Get().ChangeScene(new Select());
+	}
+	else
+	{
+		SetAlpha(1.0f);
+	}
+}
+
+// 通常描画
+void Title::NormalDraw(void)
+{
+	Scene::Draw("TitleName");
 }
 
 // 描画
 void Title::Draw(void)
 {
-	Scene::Draw("TitleName", { 0.0f, 0.0f }, { (float)Game::Get().GetWinSize().x, (float)Game::Get().GetWinSize().y });
-
-	static float alpha = 1.0f;
-	SetAlpha(alpha);
-	DrawBox(0, 0, 640, 480, 0, 0, 0);
-	SetAlpha(1.0f);
-
-	alpha -= 0.005f;
+	(this->*draw)();
 }
 
 // キー入力
@@ -42,18 +82,26 @@ void Title::Key(void)
 {
 	if (TriggerKey(INPUT_RETURN))
 	{
-		Game::Get().ChangeScene(new Select());
+		draw = &Title::FadeOut;
 	}
 }
 
 // MIDI入力
 void Title::Midi(void)
 {
-
+	if (GetMidiState() >> 4 == 0x9)
+	{
+		draw = &Title::FadeOut;
+	}
 }
 
 // 処理
 void Title::UpData(void)
 {
-	(this->*func)();
+	if (alpha < 1.0f)
+	{
+		return;
+	}
+
+	(this->*updata)();
 }

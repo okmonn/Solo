@@ -20,6 +20,15 @@ private:
 	// 画像読み込み
 	void Load(void);
 
+	// フェードイン
+	void FadeIn(void);
+
+	// フェードアウト
+	void FadeOut(void);
+
+	// 通常描画
+	void NormalDraw(void);
+
 	// キー入力
 	void Key(void);
 
@@ -28,6 +37,7 @@ private:
 
 
 	// 関数ポインタ
-	void (Title::*func)(void);
+	void (Title::*draw)(void);
+	void (Title::*updata)(void);
 };
 

@@ -3,7 +3,8 @@
 using namespace func;
 
 // コンストラクタ
-Scene::Scene()
+Scene::Scene() : 
+	alpha(0.0f), large(1.0f)
 {
 	data.clear();
 }
@@ -14,23 +15,19 @@ Scene::~Scene()
 }
 
 // 画像データの追加
-void Scene::AddImg(const std::string & fileName)
+void Scene::AddImg(const std::string & fileName, const Vec2f& size, const Vec2f& pos)
 {
 	auto start = fileName.find_last_of('/') + 1;
-	auto end = fileName.find_last_of('.');
+	auto end  = fileName.find_last_of('.');
 	std::string name = fileName.substr(start, end - start);
 
-	LoadImg(data[name], fileName);
+	LoadImg(data[name].id, fileName);
+	data[name].pos  = pos;
+	data[name].size = size;
 }
 
 // 描画
-void Scene::Draw(const std::string& name, const Vec2f& pos, bool turnX, bool turnY)
+void Scene::Draw(const std::string& name, bool turnX, bool turnY)
 {
-	func::Draw(data[name], pos.x, pos.y, turnX, turnY);
-}
-
-// 描画・サイズ指定
-void Scene::Draw(const std::string & name, const Vec2f & pos, const Vec2f & size, bool turnX, bool turnY)
-{
-	func::Draw(data[name], pos.x, pos.y, size.x, size.y, turnX, turnY);
+	func::Draw(data[name].id, data[name].pos.x, data[name].pos.y, data[name].size.x, data[name].size.y, turnX, turnY);
 }
