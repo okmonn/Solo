@@ -5,12 +5,9 @@
 #include "../../../Source/Func/Func.h"
 using namespace func;
 
-// フェード速度
-#define FADE_SPEED 0.01f;
-
 // コンストラクタ
 Title::Title() : 
-	large(1.5f), flam(0)
+	flam(0)
 {
 	draw = &Title::FadeIn;
 	updata = (GetMidiDevNum() <= 0) ? &Title::Key : &Title::Midi;
@@ -21,12 +18,15 @@ Title::Title() :
 // デストラクタ
 Title::~Title()
 {
+	Delete("TitleName");
+	Delete("Enter");
 }
 
 // 画像読み込み
 void Title::Load(void)
 {
 	AddImg("Material/img/TitleName.png", { (float)Game::Get().GetWinSize().x, (float)Game::Get().GetWinSize().y });
+	AddImg("Material/img/Enter.png", { 300.0f, 50.0f }, { (float)Game::Get().GetWinSize().x / 2 - 300.0f / 2, (float)Game::Get().GetWinSize().y / 2 - 50.0f / 2 }, 0.5f);
 }
 
 // フェードイン
@@ -35,7 +35,7 @@ void Title::FadeIn(void)
 	alpha += FADE_SPEED;
 
 	SetAlpha(alpha);
-	Scene::Draw("TitleName", large);
+	Scene::Draw("TitleName");
 
 	if (alpha >= 1.0f)
 	{
@@ -54,25 +54,17 @@ void Title::FadeOut(void)
 	alpha -= FADE_SPEED;
 
 	SetAlpha(alpha);
-	Scene::Draw("TitleName", large);
-
-	if (alpha <= 0.0f)
-	{
-		Game::Get().ChangeScene(new Select());
-	}
-	else
-	{
-		SetAlpha(1.0f);
-	}
+	Scene::Draw("TitleName");
 }
 
 // 通常描画
 void Title::NormalDraw(void)
 {
-	Scene::Draw("TitleName", large);
+	Scene::Draw("TitleName");
+	Scene::Draw("Enter");
 	if (flam >= 20)
 	{
-		large = (large > 1.0f) ? 0.5f : 1.5f;
+		data["TitleName"].large = (data["TitleName"].large > 1.0f) ? 1.0f : 1.5f;
 		flam = 0;
 	}
 	++flam;
@@ -89,6 +81,7 @@ void Title::Key(void)
 {
 	if (TriggerKey(INPUT_RETURN))
 	{
+		data["TitleName"].large = 1.0f;
 		draw = &Title::FadeOut;
 	}
 }
@@ -111,4 +104,13 @@ void Title::UpData(void)
 	}
 
 	(this->*updata)();
+
+	if (alpha <= 0.0f)
+	{
+		Game::Get().ChangeScene(new Select());
+	}
+	else
+	{
+		SetAlpha(1.0f);
+	}
 }

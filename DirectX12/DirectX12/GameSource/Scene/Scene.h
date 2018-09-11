@@ -3,6 +3,9 @@
 #include <map>
 #include <string>
 
+// フェード速度
+#define FADE_SPEED 0.01f;
+
 class Scene
 {
 	// データ
@@ -13,6 +16,8 @@ class Scene
 		Vec2f pos;
 		//サイズ
 		Vec2f size;
+		//拡大率
+		float large;
 	};
 
 public:
@@ -28,10 +33,14 @@ public:
 
 protected:
 	// 画像データの追加
-	void AddImg(const std::string& fileName, const Vec2f& size, const Vec2f& pos = 0.0f);
+	void AddImg(const std::string& fileName, const Vec2f& size, const Vec2f& pos = 0.0f, float large = 1.0f);
 
 	// 描画
-	void Draw(const std::string& name, float large = 1.0f, bool turnX = false, bool turnY = false);
+	void Draw(const std::string& name, bool turnX = false, bool turnY = false);
+
+	// 画像消去
+	void Delete(const std::string& name);
+
 
 	// 画像データ
 	std::map<std::string, Data>data;

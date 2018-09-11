@@ -36,9 +36,6 @@ private:
 	void Midi(void);
 
 
-	// Šg‘å—¦
-	float large;
-
 	// ƒtƒŒ[ƒ€
 	unsigned int flam;
 

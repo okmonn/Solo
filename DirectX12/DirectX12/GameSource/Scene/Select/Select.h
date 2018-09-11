@@ -19,6 +19,18 @@ public:
 	void UpData(void);
 
 private:
+	// 読み込み
+	void Load(void);
+
+	// フェードイン
+	void FadeIn(void);
+
+	// フェードアウト
+	void FadeOut(void);
+
+	// 通常描画
+	void NormalDraw(void);
+
 	// キー入力
 	void Key(void);
 
@@ -30,6 +42,7 @@ private:
 	std::vector<std::string>fileName;
 
 	// 関数ポインタ
-	void (Select::*func)(void);
+	void (Select::*draw)(void);
+	void (Select::*updata)(void);
 };
 
