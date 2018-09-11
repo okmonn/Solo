@@ -36,6 +36,12 @@ private:
 	void Midi(void);
 
 
+	// 拡大率
+	float large;
+
+	// フレーム
+	unsigned int flam;
+
 	// 関数ポインタ
 	void (Title::*draw)(void);
 	void (Title::*updata)(void);

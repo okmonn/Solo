@@ -9,7 +9,8 @@ using namespace func;
 #define FADE_SPEED 0.01f;
 
 // コンストラクタ
-Title::Title()
+Title::Title() : 
+	large(1.5f), flam(0)
 {
 	draw = &Title::FadeIn;
 	updata = (GetMidiDevNum() <= 0) ? &Title::Key : &Title::Midi;
@@ -34,7 +35,7 @@ void Title::FadeIn(void)
 	alpha += FADE_SPEED;
 
 	SetAlpha(alpha);
-	Scene::Draw("TitleName");
+	Scene::Draw("TitleName", large);
 
 	if (alpha >= 1.0f)
 	{
@@ -53,7 +54,7 @@ void Title::FadeOut(void)
 	alpha -= FADE_SPEED;
 
 	SetAlpha(alpha);
-	Scene::Draw("TitleName");
+	Scene::Draw("TitleName", large);
 
 	if (alpha <= 0.0f)
 	{
@@ -68,7 +69,13 @@ void Title::FadeOut(void)
 // 通常描画
 void Title::NormalDraw(void)
 {
-	Scene::Draw("TitleName");
+	Scene::Draw("TitleName", large);
+	if (flam >= 20)
+	{
+		large = (large > 1.0f) ? 0.5f : 1.5f;
+		flam = 0;
+	}
+	++flam;
 }
 
 // 描画

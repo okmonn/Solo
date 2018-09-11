@@ -31,14 +31,11 @@ protected:
 	void AddImg(const std::string& fileName, const Vec2f& size, const Vec2f& pos = 0.0f);
 
 	// 描画
-	void Draw(const std::string& name, bool turnX = false, bool turnY = false);
+	void Draw(const std::string& name, float large = 1.0f, bool turnX = false, bool turnY = false);
 
 	// 画像データ
 	std::map<std::string, Data>data;
 
 	// アルファ値
 	float alpha;
-
-	// 拡大率
-	float large;
 };

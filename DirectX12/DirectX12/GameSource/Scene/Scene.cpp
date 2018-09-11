@@ -4,7 +4,7 @@ using namespace func;
 
 // コンストラクタ
 Scene::Scene() : 
-	alpha(0.0f), large(1.0f)
+	alpha(0.0f)
 {
 	data.clear();
 }
@@ -27,7 +27,8 @@ void Scene::AddImg(const std::string & fileName, const Vec2f& size, const Vec2f&
 }
 
 // 描画
-void Scene::Draw(const std::string& name, bool turnX, bool turnY)
+void Scene::Draw(const std::string& name, float large, bool turnX, bool turnY)
 {
-	func::Draw(data[name].id, data[name].pos.x, data[name].pos.y, data[name].size.x, data[name].size.y, turnX, turnY);
+	auto size = data[name].size * large;
+	func::Draw(data[name].id, data[name].pos.x - (size.x - data[name].size.x) / 2, data[name].pos.y - (size.y - data[name].size.y) / 2, size.x, size.y, turnX, turnY);
 }
