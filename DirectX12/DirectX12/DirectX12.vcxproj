@@ -119,6 +119,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GameSource\Editor\Character.h" />
+    <ClInclude Include="GameSource\Editor\Editor.h" />
+    <ClInclude Include="GameSource\etc\Share.h" />
+    <ClInclude Include="GameSource\Game\Game.h" />
+    <ClInclude Include="GameSource\Scene\Edit\Edit.h" />
+    <ClInclude Include="GameSource\Scene\Play\Play.h" />
+    <ClInclude Include="GameSource\Scene\Result\Result.h" />
+    <ClInclude Include="GameSource\Scene\Scene.h" />
+    <ClInclude Include="GameSource\Scene\Select\Select.h" />
+    <ClInclude Include="GameSource\Scene\Title\Title.h" />
     <ClInclude Include="Source\BaseObj\Obj.h" />
     <ClInclude Include="Source\Command\Command.h" />
     <ClInclude Include="Source\Command\List\List.h" />
@@ -162,6 +172,14 @@
     <ClInclude Include="Source\Xaudio2\Xaudio2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameSource\Editor\Editor.cpp" />
+    <ClCompile Include="GameSource\Game\Game.cpp" />
+    <ClCompile Include="GameSource\Scene\Edit\Edit.cpp" />
+    <ClCompile Include="GameSource\Scene\Play\Play.cpp" />
+    <ClCompile Include="GameSource\Scene\Result\Result.cpp" />
+    <ClCompile Include="GameSource\Scene\Scene.cpp" />
+    <ClCompile Include="GameSource\Scene\Select\Select.cpp" />
+    <ClCompile Include="GameSource\Scene\Title\Title.cpp" />
     <ClCompile Include="Source\Command\List\List.cpp" />
     <ClCompile Include="Source\Command\Queue\Queue.cpp" />
     <ClCompile Include="Source\Compiler\Compiler.cpp" />

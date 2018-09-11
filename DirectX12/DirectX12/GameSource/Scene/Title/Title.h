@@ -1,16 +1,14 @@
 #pragma once
-#include "Scene.h"
-#include <vector>
-#include <string>
+#include "../Scene.h"
 
-class Select :
+class Title :
 	public Scene
 {
 public:
 	// コンストラクタ
-	Select();
+	Title();
 	// デストラクタ
-	~Select();
+	~Title();
 
 	// 描画
 	void Draw(void);
@@ -19,6 +17,9 @@ public:
 	void UpData(void);
 
 private:
+	// 画像読み込み
+	void Load(void);
+
 	// キー入力
 	void Key(void);
 
@@ -26,10 +27,7 @@ private:
 	void Midi(void);
 
 
-	// ディレクトリ内のファイル名
-	std::vector<std::string>fileName;
-
 	// 関数ポインタ
-	void (Select::*func)(void);
+	void (Title::*func)(void);
 };
 

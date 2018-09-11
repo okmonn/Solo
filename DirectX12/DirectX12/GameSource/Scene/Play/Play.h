@@ -1,14 +1,14 @@
 #pragma once
-#include "Scene.h"
+#include "../Scene.h"
 
-class Edit :
+class Play :
 	public Scene
 {
 public:
 	// コンストラクタ
-	Edit();
+	Play();
 	// デストラクタ
-	~Edit();
+	~Play();
 
 	// 描画
 	void Draw(void);

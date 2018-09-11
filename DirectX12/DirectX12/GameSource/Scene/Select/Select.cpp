@@ -1,15 +1,15 @@
 #include "Select.h"
-#include "../Game.h"
-#include "../../Func.h"
+#include "../../Game/Game.h"
+#include "../../../Source/Func/Func.h"
 using namespace func;
 
 // コンストラクタ
 Select::Select()
 {
 	fileName.clear();
-	func = (GetMidiDevNum() == 0) ? &Select::Key : &Select::Midi;
+	func = (GetMidiDevNum() <= 0) ? &Select::Key : &Select::Midi;
 
-	std::vector<std::string>m = GetDirFile(".");
+	std::vector<std::wstring>m = GetDirFile(L".");
 }
 
 // デストラクタ

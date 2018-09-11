@@ -1,6 +1,6 @@
 #include "Editor.h"
 #include "Character.h"
-#include "../../Func.h"
+#include "../../Source/Func/Func.h"
 using namespace func;
 
 // コンストラクタ

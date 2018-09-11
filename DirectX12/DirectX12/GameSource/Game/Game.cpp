@@ -1,6 +1,6 @@
 #include "Game.h"
-#include "Scene/Title.h"
-#include"../Func.h"
+#include "../Scene/Title/Title.h"
+#include "../../Source/Func/Func.h"
 using namespace func;
 
 // コンストラクタ
