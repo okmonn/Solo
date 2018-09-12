@@ -27,8 +27,13 @@ void Scene::AddImg(const std::string & fileName, const Vec2f& size, const Vec2f&
 	while (data.find(name) != data.end())
 	{
 		++num;
-		st << num;
+		st << num << std::flush;
 		name += st.str();
+		if (data.find(name) != data.end())
+		{
+			name.pop_back();
+		}
+		st.str("");
 	}
 
 	LoadImg(data[name].id, fileName);

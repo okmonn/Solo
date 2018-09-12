@@ -4,7 +4,6 @@
 #include "../../etc/Share.h"
 #include "../../../Source/Func/Func.h"
 using namespace func;
-#include <iostream>
 
 // コンストラクタ
 Title::Title() : 
@@ -14,8 +13,6 @@ Title::Title() :
 	updata = (GetMidiDevNum() <= 0) ? &Title::Key : &Title::Midi;
 
 	Load();
-
-	printf("タイトル\n");
 }
 
 // デストラクタ
@@ -23,7 +20,6 @@ Title::~Title()
 {
 	Delete("TitleName");
 	Delete("Enter");
-	printf("タイトル破棄\n");
 }
 
 // 画像読み込み

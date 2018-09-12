@@ -2,7 +2,6 @@
 #include "../../Game/Game.h"
 #include "../../../Source/Func/Func.h"
 using namespace func;
-#include <iostream>
 
 // コンストラクタ
 Select::Select()
@@ -13,14 +12,13 @@ Select::Select()
 	updata = (GetMidiDevNum() <= 0) ? &Select::Key : &Select::Midi;
 
 	Load();
-
-	printf("セレクト\n");
 }
 
 // デストラクタ
 Select::~Select()
 {
-	printf("セレクト破棄\n");
+	Delete("QuarterNote");
+	Delete("QuarterNote1");
 }
 
 // 読み込み
@@ -28,6 +26,7 @@ void Select::Load(void)
 {
 	AddImg("Material/img/QuarterNote.png", { 130.0f, 150.0f });
 	AddImg("Material/img/QuarterNote.png", { 130.0f, 150.0f }, { 300.0f, 200.0f });
+	AddImg("Material/img/QuarterNote.png", { 130.0f, 150.0f }, { 500.0f, 200.0f });
 }
 
 // フェードイン
@@ -38,6 +37,7 @@ void Select::FadeIn(void)
 	SetAlpha(alpha);
 	Scene::Draw("QuarterNote");
 	Scene::Draw("QuarterNote1");
+	Scene::Draw("QuarterNote2");
 
 	if (alpha >= 1.0f)
 	{
@@ -81,6 +81,11 @@ void Select::Midi(void)
 // 処理
 void Select::UpData(void)
 {
+	if (alpha < 1.0f)
+	{
+		return;
+	}
+
 	(this->*updata)();
 }
 
