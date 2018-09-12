@@ -175,6 +175,9 @@ private:
 	// ファイルを返す
 	std::tstring GetFile(const fs::path& p);
 
+	// 画像アドレスの消去
+	void EraseImg(void);
+
 
 	// 画面サイズX
 	UINT x;
@@ -196,6 +199,9 @@ private:
 
 	// バリア
 	D3D12_RESOURCE_BARRIER barrier;
+
+	// 破棄アドレス
+	std::vector<UINT*>erase;
 
 	// ウィンドウ
 	std::shared_ptr<Window>win;

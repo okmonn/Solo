@@ -4,6 +4,7 @@
 #include "../../etc/Share.h"
 #include "../../../Source/Func/Func.h"
 using namespace func;
+#include <iostream>
 
 // コンストラクタ
 Title::Title() : 
@@ -13,6 +14,8 @@ Title::Title() :
 	updata = (GetMidiDevNum() <= 0) ? &Title::Key : &Title::Midi;
 
 	Load();
+
+	printf("タイトル\n");
 }
 
 // デストラクタ
@@ -20,6 +23,7 @@ Title::~Title()
 {
 	Delete("TitleName");
 	Delete("Enter");
+	printf("タイトル破棄\n");
 }
 
 // 画像読み込み
@@ -55,6 +59,15 @@ void Title::FadeOut(void)
 
 	SetAlpha(alpha);
 	Scene::Draw("TitleName");
+
+	if (alpha <= 0.0f)
+	{
+		Game::Get().ChangeScene(new Select());
+	}
+	else
+	{
+		SetAlpha(1.0f);
+	}
 }
 
 // 通常描画
@@ -104,13 +117,4 @@ void Title::UpData(void)
 	}
 
 	(this->*updata)();
-
-	if (alpha <= 0.0f)
-	{
-		Game::Get().ChangeScene(new Select());
-	}
-	else
-	{
-		SetAlpha(1.0f);
-	}
 }

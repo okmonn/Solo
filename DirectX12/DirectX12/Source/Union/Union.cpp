@@ -36,6 +36,8 @@ Union::Union() :
 	viewPort = {};
 	scissor = {};
 	barrier = {};
+
+	erase.clear();
 }
 
 // デストラクタ
@@ -289,6 +291,7 @@ void Union::Do(void)
 	point->Reset();
 	line->Reset();
 	box->Reset();
+	EraseImg();
 }
 
 // キー入力
@@ -360,7 +363,7 @@ void Union::FreelyDraw(UINT & index, const Vec2f & rectPos, const Vec2f & rectSi
 // 画像の消去
 void Union::DeleteImg(UINT & index)
 {
-	tex->Delete(index);
+	erase.push_back(&index);
 }
 
 // VMD読み込み
@@ -460,6 +463,17 @@ std::tstring Union::GetFile(const fs::path & p)
 	}
 
 	return m;
+}
+
+// 画像アドレスの消去
+void Union::EraseImg(void)
+{
+	for (UINT i = 0; i < erase.size(); ++i)
+	{
+		tex->Delete(*erase[i]);
+	}
+	erase.clear();
+	erase.shrink_to_fit();
 }
 
 // ディレクトリのファイル列挙

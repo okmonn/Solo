@@ -2,6 +2,7 @@
 #include "../../Game/Game.h"
 #include "../../../Source/Func/Func.h"
 using namespace func;
+#include <iostream>
 
 // コンストラクタ
 Select::Select()
@@ -12,11 +13,14 @@ Select::Select()
 	updata = (GetMidiDevNum() <= 0) ? &Select::Key : &Select::Midi;
 
 	Load();
+
+	printf("セレクト\n");
 }
 
 // デストラクタ
 Select::~Select()
 {
+	printf("セレクト破棄\n");
 }
 
 // 読み込み
