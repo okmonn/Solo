@@ -2,15 +2,16 @@
 #include "../../Game/Game.h"
 #include "../../../Source/Func/Func.h"
 #include <random>
-#include <ctime>
 #include <functional>
+#include <sstream>
 using namespace func;
 
-// コンストラクタ
-Select::Select()
-{
-	fileName.clear();
+#define QuarterNote_MAX 3
 
+// コンストラクタ
+Select::Select() :
+	flag(false)
+{
 	draw = &Select::FadeIn;
 	updata = (GetMidiDevNum() <= 0) ? &Select::Key : &Select::Midi;
 
@@ -28,9 +29,17 @@ Select::~Select()
 // 読み込み
 void Select::Load(void)
 {
-	AddImg("Material/img/QuarterNote.png", { 130.0f, 150.0f });
-	AddImg("Material/img/QuarterNote.png", { 130.0f, 150.0f });
-	AddImg("Material/img/QuarterNote.png", { 130.0f, 150.0f });
+	for (UINT i = 0; i < QuarterNote_MAX; ++i)
+	{
+		std::ostringstream st;
+		if (i != 0)
+		{
+			st << i << std::flush;
+		}
+		AddImg("Material/img/QuarterNote.png", { 130.0f, 150.0f });
+		MT(data["QuarterNote" + st.str()].pos, data["QuarterNote" + st.str()].size);
+		st.str("");
+	}
 }
 
 // フェードイン
@@ -60,9 +69,16 @@ void Select::FadeOut(void)
 void Select::NormalDraw(void)
 {
 	SetAlpha(alpha);
-	Scene::Draw("QuarterNote");
-	Scene::Draw("QuarterNote1");
-	Scene::Draw("QuarterNote2");
+	for (UINT i = 0; i < QuarterNote_MAX; ++i)
+	{
+		std::ostringstream st;
+		if (i != 0)
+		{
+			st << i << std::flush;
+		}
+		Scene::Draw("QuarterNote" + st.str());
+		st.str("");
+	}
 	SetAlpha(1.0f);
 }
 
@@ -86,20 +102,37 @@ void Select::Midi(void)
 void Select::MT(Vec2f & pos, const Vec2f& offset)
 {
 	std::random_device device;
-	auto x = std::bind(std::uniform_int_distribution<float>(0.0f, (float)(Game::Get().GetWinSize().x - offset.x)), std::mt19937(device()));
-	auto y = std::bind(std::uniform_int_distribution<float>(0.0f, (float)(Game::Get().GetWinSize().y - offset.y)), std::mt19937(device()));
-	pos.x = x();
-	pos.y = y();
+	auto x = std::bind(std::uniform_int_distribution<UINT>(0, (Game::Get().GetWinSize().x - (UINT)offset.x)), std::mt19937(device()));
+	auto y = std::bind(std::uniform_int_distribution<UINT>(0, (Game::Get().GetWinSize().y - (UINT)offset.y)), std::mt19937(device()));
+	pos.x = static_cast<float>(x());
+	pos.y = static_cast<float>(y());
 }
 
 // 処理
 void Select::UpData(void)
 {
-	if (alpha < 1.0f)
-	{
-		return;
-	}
-	
 	(this->*updata)();
+
+	if (flag == false && alpha < 2.0f)
+	{
+		alpha += FADE_SPEED;
+		if (alpha >= 2.0f)
+		{
+			alpha = 1.0f;
+			flag = true;
+		}
+	}
+	else if (flag == true && alpha > -1.0f)
+	{
+		alpha -= FADE_SPEED;
+		if (alpha <= -1.0f)
+		{
+			MT(data["QuarterNote"].pos, data["QuarterNote"].size);
+			MT(data["QuarterNote1"].pos, data["QuarterNote1"].size);
+			MT(data["QuarterNote2"].pos, data["QuarterNote2"].size);
+			alpha = 0.0f;
+			flag = false;
+		}
+	}
 }
 

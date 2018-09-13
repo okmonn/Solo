@@ -41,8 +41,8 @@ private:
 	void MT(Vec2f& pos, const Vec2f& offset = 0.0f);
 
 
-	// ディレクトリ内のファイル名
-	std::vector<std::string>fileName;
+	// 透過フラグ
+	bool flag;
 
 	// 関数ポインタ
 	void (Select::*draw)(void);
