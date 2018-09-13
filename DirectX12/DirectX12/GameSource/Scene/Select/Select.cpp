@@ -24,6 +24,7 @@ Select::~Select()
 	Delete("QuarterNote");
 	Delete("QuarterNote1");
 	Delete("QuarterNote2");
+	Delete("GameStart");
 }
 
 // 読み込み
@@ -40,6 +41,8 @@ void Select::Load(void)
 		MT(data["QuarterNote" + st.str()].pos, data["QuarterNote" + st.str()].size);
 		st.str("");
 	}
+	AddImg("Material/img/GameStart.png", { 350.0f, 51.0f }, 
+		{ (float)Game::Get().GetWinSize().x / 2.0f - 350.0f / 2.0f, (float)Game::Get().GetWinSize().y / 2.0f - 152.0f / 2.0f });
 }
 
 // フェードイン
@@ -48,10 +51,12 @@ void Select::FadeIn(void)
 	alpha += FADE_SPEED;
 
 	SetAlpha(alpha);
+
+	Scene::Draw("GameStart");
 	
 	if (alpha >= 1.0f)
 	{
-		alpha = 1.0f;
+		alpha = -1.0f;
 		draw = &Select::NormalDraw;
 	}
 	else
@@ -80,6 +85,8 @@ void Select::NormalDraw(void)
 		st.str("");
 	}
 	SetAlpha(1.0f);
+
+	Scene::Draw("GameStart");
 }
 
 // 描画
