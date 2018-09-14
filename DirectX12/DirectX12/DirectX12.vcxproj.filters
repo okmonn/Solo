@@ -148,6 +148,12 @@
     <Filter Include="GameSource\etc">
       <UniqueIdentifier>{a649fe6e-da92-4562-89dd-e59cea785973}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameSource\Object">
+      <UniqueIdentifier>{cc3c8987-cba7-49fd-acd7-2edd8dab9ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameSource\Object\Notes">
+      <UniqueIdentifier>{3913f062-37a4-4ea6-8d82-34d9e012ce2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\BaseObj\Obj.h">
@@ -303,6 +309,9 @@
     <ClInclude Include="Source\Debuger\Debug.h">
       <Filter>Source\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="GameSource\Object\BaseObj.h">
+      <Filter>GameSource\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Device\Device.cpp">
@@ -415,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="Source\Debuger\Debug.cpp">
       <Filter>Source\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\BaseObj.cpp">
+      <Filter>GameSource\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

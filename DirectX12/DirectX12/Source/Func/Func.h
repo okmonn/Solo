@@ -50,20 +50,27 @@ namespace func {
 
 	// 描画
 	void Draw(unsigned int& index, float x, float y, bool turnX = false, bool turnY = false);
+	void Draw(unsigned int& index, float x, float y, float alpha, bool turnX = false, bool turnY = false);
 
 	// 描画・サイズ指定
 	void Draw(unsigned int& index, float x, float y, float sizeX, float sizeY, bool turnX = false, bool turnY = false);
+	void Draw(unsigned int& index, float x, float y, float sizeX, float sizeY, float alpha, bool turnX = false, bool turnY = false);
 
 	// 描画・サイズ指定・分割
 	void Draw(unsigned int& index, float x, float y, float sizeX, float sizeY,
 		float rectX, float rectY, float rectSizeX, float rectSizeY, bool turnX = false, bool turnY = false);
+	void Draw(unsigned int& index, float x, float y, float sizeX, float sizeY,
+		float rectX, float rectY, float rectSizeX, float rectSizeY, float alpha, bool turnX = false, bool turnY = false);
 
 	// 描画・自由変形
 	void FreelyDraw(unsigned int& index, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, bool turnX = false, bool turnY = false);
+	void FreelyDraw(unsigned int& index, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float alpha, bool turnX = false, bool turnY = false);
 
 	// 描画・分割・自由変形
 	void FreelyDraw(unsigned int& index, float rectX, float rectY, float rectSizeX, float rectSizeY, 
 		float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, bool turnX = false, bool turnY = false);
+	void FreelyDraw(unsigned int& index, float rectX, float rectY, float rectSizeX, float rectSizeY,
+		float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float alpha, bool turnX = false, bool turnY = false);
 
 	// 画像の消去
 	void DeleteImg(unsigned int& index);
@@ -105,7 +112,7 @@ namespace func {
 	unsigned char GetMidiData2(void);
 
 	// 指定したディレクトリのファイル名取得
-	std::vector<std::tstring> GetDirFile(const std::tstring& path);
+	std::vector<std::string> GetDirFile(const std::string& path);
 
 	// ログインユーザーネーム取得
 	std::tstring GetName(void);

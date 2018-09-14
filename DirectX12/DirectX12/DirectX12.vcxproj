@@ -123,6 +123,7 @@
     <ClInclude Include="GameSource\Editor\Editor.h" />
     <ClInclude Include="GameSource\etc\Share.h" />
     <ClInclude Include="GameSource\Game\Game.h" />
+    <ClInclude Include="GameSource\Object\BaseObj.h" />
     <ClInclude Include="GameSource\Scene\Edit\Edit.h" />
     <ClInclude Include="GameSource\Scene\Play\Play.h" />
     <ClInclude Include="GameSource\Scene\Result\Result.h" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClCompile Include="GameSource\Editor\Editor.cpp" />
     <ClCompile Include="GameSource\Game\Game.cpp" />
+    <ClCompile Include="GameSource\Object\BaseObj.cpp" />
     <ClCompile Include="GameSource\Scene\Edit\Edit.cpp" />
     <ClCompile Include="GameSource\Scene\Play\Play.cpp" />
     <ClCompile Include="GameSource\Scene\Result\Result.cpp" />

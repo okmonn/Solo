@@ -336,8 +336,20 @@ void Union::Draw(UINT& index, const Vec2f& pos, UINT turnX, UINT turnY)
 	tex->Draw(index, pos, alpha, turnX, turnY);
 }
 
+// 描画
+void Union::Draw(UINT & index, const Vec2f & pos, float alpha, UINT turnX, UINT turnY)
+{
+	tex->Draw(index, pos, alpha, turnX, turnY);
+}
+
 // 描画・サイズ指定
 void Union::Draw(UINT & index, const Vec2f & pos, const Vec2f & size, UINT turnX, UINT turnY)
+{
+	tex->Draw(index, pos, size, alpha, turnX, turnY);
+}
+
+// 描画・サイズ指定
+void Union::Draw(UINT & index, const Vec2f & pos, const Vec2f & size, float alpha, UINT turnX, UINT turnY)
 {
 	tex->Draw(index, pos, size, alpha, turnX, turnY);
 }
@@ -348,8 +360,20 @@ void Union::Draw(UINT& index, const Vec2f& pos, const Vec2f& size, const Vec2f& 
 	tex->Draw(index, pos, size, rect, rectSize, alpha, turnX, turnY);
 }
 
+// 描画・サイズ指定・分割
+void Union::Draw(UINT & index, const Vec2f & pos, const Vec2f & size, const Vec2f & rect, const Vec2f & rectSize, float alpha, UINT turnX, UINT turnY)
+{
+	tex->Draw(index, pos, size, rect, rectSize, alpha, turnX, turnY);
+}
+
 // 描画・自由変形
 void Union::FreelyDraw(UINT & index, const Vec2f & pos1, const Vec2f & pos2, const Vec2f & pos3, const Vec2f & pos4, UINT turnX, UINT turnY)
+{
+	tex->FreelyDraw(index, pos1, pos2, pos3, pos4, alpha, turnX, turnY);
+}
+
+// 描画・自由変形
+void Union::FreelyDraw(UINT & index, const Vec2f & pos1, const Vec2f & pos2, const Vec2f & pos3, const Vec2f & pos4, float alpha, UINT turnX, UINT turnY)
 {
 	tex->FreelyDraw(index, pos1, pos2, pos3, pos4, alpha, turnX, turnY);
 }
@@ -358,6 +382,23 @@ void Union::FreelyDraw(UINT & index, const Vec2f & pos1, const Vec2f & pos2, con
 void Union::FreelyDraw(UINT & index, const Vec2f & rectPos, const Vec2f & rectSize, const Vec2f & pos1, const Vec2f & pos2, const Vec2f & pos3, const Vec2f & pos4, UINT turnX, UINT turnY)
 {
 	tex->FreelyDraw(index, rectPos, rectSize, pos1, pos2, pos3, pos4, alpha, turnX, turnY);
+}
+
+// 描画・分割・自由変形
+void Union::FreelyDraw(UINT & index, const Vec2f & rectPos, const Vec2f & rectSize, const Vec2f & pos1, const Vec2f & pos2, const Vec2f & pos3, const Vec2f & pos4, float alpha, UINT turnX, UINT turnY)
+{
+	tex->FreelyDraw(index, rectPos, rectSize, pos1, pos2, pos3, pos4, alpha, turnX, turnY);
+}
+
+// 画像アドレスの消去
+void Union::EraseImg(void)
+{
+	for (UINT i = 0; i < erase.size(); ++i)
+	{
+		tex->Delete(*erase[i]);
+	}
+	erase.clear();
+	erase.shrink_to_fit();
 }
 
 // 画像の消去
@@ -445,17 +486,13 @@ UCHAR Union::GetMidiData2(void)
 }
 
 // ファイルを返す
-std::tstring Union::GetFile(const fs::path & p)
+std::string Union::GetFile(const fs::path & p)
 {
-	std::tstring m;
+	std::string m;
 	//ファイルの場合
 	if (fs::is_regular_file(p))
 	{
-#ifdef UNICODE
-		m = p.filename().wstring();
-#else
 		m = p.filename().string();
-#endif
 	}
 	else if (fs::is_directory(p))
 	{
@@ -465,24 +502,13 @@ std::tstring Union::GetFile(const fs::path & p)
 	return m;
 }
 
-// 画像アドレスの消去
-void Union::EraseImg(void)
-{
-	for (UINT i = 0; i < erase.size(); ++i)
-	{
-		tex->Delete(*erase[i]);
-	}
-	erase.clear();
-	erase.shrink_to_fit();
-}
-
 // ディレクトリのファイル列挙
-std::vector<std::tstring> Union::GetDirFile(const std::tstring & point)
+std::vector<std::string> Union::GetDirFile(const std::string & point)
 {
 	//列挙の起点
 	fs::path p(point.c_str());
 
-	std::vector<std::tstring>fileName;
+	std::vector<std::string>fileName;
 
 	for (auto& i : fs::recursive_directory_iterator(p))
 	{

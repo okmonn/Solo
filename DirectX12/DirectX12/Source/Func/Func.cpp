@@ -85,10 +85,22 @@ void func::Draw(unsigned int & index, float x, float y, bool turnX, bool turnY)
 	Union::Get().Draw(index, { x, y }, turnX, turnY);
 }
 
+// 描画
+void func::Draw(unsigned int & index, float x, float y, float alpha, bool turnX, bool turnY)
+{
+	Union::Get().Draw(index, { x, y }, alpha, turnX, turnY);
+}
+
 // 描画・サイズ指定
 void func::Draw(unsigned int & index, float x, float y, float sizeX, float sizeY, bool turnX, bool turnY)
 {
 	Union::Get().Draw(index, { x, y }, { sizeX, sizeY }, turnX, turnY);
+}
+
+// 描画・サイズ指定
+void func::Draw(unsigned int & index, float x, float y, float sizeX, float sizeY, float alpha, bool turnX, bool turnY)
+{
+	Union::Get().Draw(index, { x, y }, { sizeX, sizeY }, alpha, turnX, turnY);
 }
 
 // 描画・サイズ指定・分割
@@ -97,16 +109,34 @@ void func::Draw(unsigned int & index, float x, float y, float sizeX, float sizeY
 	Union::Get().Draw(index, { x, y }, { sizeX, sizeY }, { rectX, rectY }, { rectSizeX, rectSizeY }, turnX, turnY);
 }
 
+// 描画・サイズ指定・分割
+void func::Draw(unsigned int & index, float x, float y, float sizeX, float sizeY, float rectX, float rectY, float rectSizeX, float rectSizeY, float alpha, bool turnX, bool turnY)
+{
+	Union::Get().Draw(index, { x, y }, { sizeX, sizeY }, { rectX, rectY }, { rectSizeX, rectSizeY }, alpha, turnX, turnY);
+}
+
 // 描画・自由変形
 void func::FreelyDraw(unsigned int & index, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, bool turnX, bool turnY)
 {
 	Union::Get().FreelyDraw(index, { x1, y1 }, { x2, y2 }, { x3, y3 }, { x4, y4 }, turnX, turnY);
 }
 
+// 描画・自由変形
+void func::FreelyDraw(unsigned int & index, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float alpha, bool turnX, bool turnY)
+{
+	Union::Get().FreelyDraw(index, { x1, y1 }, { x2, y2 }, { x3, y3 }, { x4, y4 }, alpha, turnX, turnY);
+}
+
 // 描画・分割・自由変形
 void func::FreelyDraw(unsigned int & index, float rectX, float rectY, float rectSizeX, float rectSizeY, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, bool turnX, bool turnY)
 {
 	Union::Get().FreelyDraw(index, { rectX, rectY }, { rectSizeX, rectSizeY }, { x1, y1 }, { x2, y2 }, { x3, y3 }, { x4, y4 }, turnX, turnY);
+}
+
+// 描画・分割・自由変形
+void func::FreelyDraw(unsigned int & index, float rectX, float rectY, float rectSizeX, float rectSizeY, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float alpha, bool turnX, bool turnY)
+{
+	Union::Get().FreelyDraw(index, { rectX, rectY }, { rectSizeX, rectSizeY }, { x1, y1 }, { x2, y2 }, { x3, y3 }, { x4, y4 }, alpha, turnX, turnY);
 }
 
 // 画像の消去
@@ -188,7 +218,7 @@ unsigned char func::GetMidiData2(void)
 }
 
 // 指定したディレクトリのファイル名取得
-std::vector<std::tstring> func::GetDirFile(const std::tstring & path)
+std::vector<std::string> func::GetDirFile(const std::string & path)
 {
 	return Union::Get().GetDirFile(path);
 }

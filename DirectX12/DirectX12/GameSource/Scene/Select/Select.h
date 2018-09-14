@@ -22,6 +22,10 @@ private:
 	// 読み込み
 	void Load(void);
 
+	// メルセンヌツイスタ
+	void MT(Vec2f& pos, const Vec2f& offset = 0.0f);
+	void MT(unsigned int& i, unsigned int min, unsigned int max);
+
 	// フェードイン
 	void FadeIn(void);
 
@@ -37,12 +41,18 @@ private:
 	// MIDI入力
 	void Midi(void);
 
-	// メルセンヌツイスタ
-	void MT(Vec2f& pos, const Vec2f& offset = 0.0f);
 
+	// 楽曲一覧
+	std::vector<std::string> song;
+
+	// 描画数
+	unsigned int drawCnt;
 
 	// 透過フラグ
 	bool flag;
+
+	// 現在のインデックス
+	unsigned int index;
 
 	// 関数ポインタ
 	void (Select::*draw)(void);

@@ -91,18 +91,23 @@ public:
 
 	// 描画
 	void Draw(UINT& index, const Vec2f& pos, UINT turnX, UINT turnY);
+	void Draw(UINT& index, const Vec2f& pos, float alpha, UINT turnX, UINT turnY);
 
 	// 描画・サイズ指定
 	void Draw(UINT& index, const Vec2f& pos, const Vec2f& size, UINT turnX, UINT turnY);
+	void Draw(UINT& index, const Vec2f& pos, const Vec2f& size, float alpha, UINT turnX, UINT turnY);
 
 	// 描画・サイズ指定・分割
 	void Draw(UINT& index, const Vec2f& pos, const Vec2f& size, const Vec2f& rect, const Vec2f& rectSize, UINT turnX, UINT turnY);
+	void Draw(UINT& index, const Vec2f& pos, const Vec2f& size, const Vec2f& rect, const Vec2f& rectSize, float alpha, UINT turnX, UINT turnY);
 
 	// 描画・自由変形
 	void FreelyDraw(UINT& index, const Vec2f& pos1, const Vec2f& pos2, const Vec2f& pos3, const Vec2f& pos4, UINT turnX, UINT turnY);
+	void FreelyDraw(UINT& index, const Vec2f& pos1, const Vec2f& pos2, const Vec2f& pos3, const Vec2f& pos4, float alpha, UINT turnX, UINT turnY);
 
 	// 描画・分割・自由変形
 	void FreelyDraw(UINT& index, const Vec2f& rectPos, const Vec2f& rectSize, const Vec2f& pos1, const Vec2f& pos2, const Vec2f& pos3, const Vec2f& pos4, UINT turnX, UINT turnY);
+	void FreelyDraw(UINT& index, const Vec2f& rectPos, const Vec2f& rectSize, const Vec2f& pos1, const Vec2f& pos2, const Vec2f& pos3, const Vec2f& pos4, float alpha, UINT turnX, UINT turnY);
 
 	// 画像の消去
 	void DeleteImg(UINT& index);
@@ -147,7 +152,7 @@ public:
 	UCHAR GetMidiData2(void);
 
 	// ディレクトリのファイル列挙
-	std::vector<std::tstring> GetDirFile(const std::tstring& point);
+	std::vector<std::string> GetDirFile(const std::string& point);
 
 private:
 	// コンストラクタ
@@ -173,7 +178,7 @@ private:
 	void Barrier(D3D12_RESOURCE_STATES befor, D3D12_RESOURCE_STATES affter);
 
 	// ファイルを返す
-	std::tstring GetFile(const fs::path& p);
+	std::string GetFile(const fs::path& p);
 
 	// 画像アドレスの消去
 	void EraseImg(void);
