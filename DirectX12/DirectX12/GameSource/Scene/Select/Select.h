@@ -52,7 +52,7 @@ private:
 	bool flag;
 
 	// 現在のインデックス
-	unsigned int index;
+	int index;
 
 	// 関数ポインタ
 	void (Select::*draw)(void);

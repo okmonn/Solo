@@ -19,6 +19,11 @@ Select::Select() :
 {
 	song.clear();
 	song = GetDirFile("Material/wave");
+	for (UINT i = 0; i < song.size(); ++i)
+	{
+		auto tmp = song[i];
+		song[i] = tmp.substr(0, tmp.find_last_of('.')) + ".png";
+	}
 
 	draw = &Select::FadeIn;
 	updata = (GetMidiDevNum() <= 0) ? &Select::Key : &Select::Midi;
@@ -41,7 +46,10 @@ Select::~Select()
 		st.str("");
 	}
 	
-	Delete("GameStart");
+	for (UINT i = 0; i < song.size(); ++i)
+	{
+		Delete(song[i]);
+	}
 }
 
 // 読み込み
@@ -58,8 +66,12 @@ void Select::Load(void)
 		MT(data["QuarterNote" + st.str()].pos, data["QuarterNote" + st.str()].size);
 		st.str("");
 	}
-	AddImg("Material/img/GameStart.png", { 350.0f, 51.0f }, 
-		{ (float)Game::Get().GetWinSize().x / 2.0f - 350.0f / 2.0f, (float)Game::Get().GetWinSize().y / 2.0f - 152.0f / 2.0f });
+
+	for (UINT i = 0; i < song.size(); ++i)
+	{
+		AddImg("Material/img/" + song[i], { 380.0f, 100.0f });
+		song[i] = song[i].substr(0, song[i].find_last_of('.'));
+	}
 }
 
 // メルセンヌツイスタ
@@ -89,7 +101,7 @@ void Select::FadeIn(void)
 
 	SetAlpha(alpha);
 
-	Scene::Draw("GameStart");
+	Scene::Draw(song[index]);
 	
 	if (alpha >= 1.0f)
 	{
@@ -109,7 +121,7 @@ void Select::FadeOut(void)
 
 	SetAlpha(alpha);
 
-	Scene::Draw("GameStart");
+	Scene::Draw(song[index]);
 
 	if (alpha <= 0.0f)
 	{
@@ -137,7 +149,7 @@ void Select::NormalDraw(void)
 	}
 	SetAlpha(1.0f);
 
-	Scene::Draw("GameStart");
+	Scene::Draw(song[index]);
 }
 
 // 描画
@@ -151,11 +163,11 @@ void Select::Key(void)
 {
 	if (TriggerKey(INPUT_A))
 	{
-		index += (index + 1 >= song.size()) ? 0 : 1;
+		index = (index + 1 > (int)(song.size()) - 1) ? 0 : ++index;
 	}
 	else if (TriggerKey(INPUT_RBRACKET))
 	{
-		index += (index - 1 <= 0) ? song.size() - 1 : -1;
+		index = (index - 1 < 0) ? song.size() - 1 : --index;
 	}
 	else if (TriggerKey(INPUT_RETURN))
 	{
