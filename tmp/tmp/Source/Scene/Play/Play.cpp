@@ -1,9 +1,10 @@
 #include "Play.h"
 #include "../Result/Result.h"
-#include "../../Obj/Obj.h"
+#include "../../Charactor/Obj.h"
 #include "../../Game/Game.h"
 #include "../../GameMane/GameMane.h"
 #include "../../Mouse/Mouse.h"
+#include "../../BackGround/BackGround.h"
 #include "DxLib.h"
 
 // ターゲット画像のオフセット
@@ -20,7 +21,7 @@ const std::string comName[] = {
 };
 
 // コンストラクタ
-Play::Play() : mane(GameMane::Get()), mouse(Mouse::Get()),
+Play::Play() : mane(GameMane::Get()), mouse(Mouse::Get()), back(std::make_shared<BackGround>()),
 	select(0), target(0)
 {
 	com.resize(COMMAND_MAX);
@@ -87,6 +88,14 @@ void Play::BattleDraw(void)
 void Play::EndDraw(void)
 {
 	mane.Draw();
+}
+
+// 描画
+void Play::Draw(void)
+{
+	back->Draw();
+
+	(this->*draw)();
 }
 
 // 戦闘処理
@@ -185,25 +194,31 @@ void Play::BattleUpData(void)
 
 		mane.UpData();
 
-		//プレイヤーキャラの攻撃
-		for (unsigned int i = 0; i < mane.GetPL().size(); ++i)
+		if (mane.GetEn().size() != 0)
 		{
-			if (mane.GetPL(i)->GetAttackFlag() == true)
+			//プレイヤーキャラの攻撃
+			for (unsigned int i = 0; i < mane.GetPL().size(); ++i)
 			{
-				mane.GetEn(target)->Decrease(mane.GetPL(i)->GetAttack());
-				mane.GetEn(target)->SetState(State::damage);
-				mane.GetPL(i)->SetAttackFlag(false);
+				if (mane.GetPL(i)->GetAttackFlag() == true && mane.GetEn(target)->GetState() != State::damage)
+				{
+					mane.GetEn(target)->Decrease(mane.GetPL(i)->GetAttack());
+					mane.GetEn(target)->SetState(State::damage);
+					mane.GetPL(i)->SetAttackFlag(false);
+				}
 			}
 		}
 
-		//敵キャラの攻撃
-		for (unsigned int i = 0; i < mane.GetEn().size(); ++i)
+		if (mane.GetPL().size() != 0)
 		{
-			if (mane.GetEn(i)->GetAttackFlag() == true)
+			//敵キャラの攻撃
+			for (unsigned int i = 0; i < mane.GetEn().size(); ++i)
 			{
-				mane.GetPL(0)->Decrease(mane.GetEn(i)->GetAttack());
-				mane.GetPL(0)->SetState(State::damage);
-				mane.GetEn(i)->SetAttackFlag(false);
+				if (mane.GetEn(i)->GetAttackFlag() == true && mane.GetPL(0)->GetState() != State::damage)
+				{
+					mane.GetPL(0)->Decrease(mane.GetEn(i)->GetAttack());
+					mane.GetPL(0)->SetState(State::damage);
+					mane.GetEn(i)->SetAttackFlag(false);
+				}
 			}
 		}
 
@@ -237,6 +252,10 @@ void Play::EndUpData(void)
 		for (unsigned int i = 0; i < mane.GetPL().size(); ++i)
 		{
 			mane.GetPL(i)->SetMove(0.0f);
+			if (mane.GetPL(i)->GetState() != State::win)
+			{
+				mane.GetPL(i)->SetState(State::win);
+			}
 		}
 	}
 	else
@@ -244,14 +263,12 @@ void Play::EndUpData(void)
 		for (unsigned int i = 0; i < mane.GetEn().size(); ++i)
 		{
 			mane.GetEn(i)->SetMove(0.0f);
+			if (mane.GetEn(i)->GetState() != State::win)
+			{
+				mane.GetEn(i)->SetState(State::win);
+			}
 		}
 	}
-}
-
-// 描画
-void Play::Draw(void)
-{
-	(this->*draw)();
 }
 
 // 処理

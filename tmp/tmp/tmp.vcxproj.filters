@@ -31,9 +31,6 @@
     <Filter Include="Mouse">
       <UniqueIdentifier>{24ad9665-08c7-40d0-b04a-a3f0b4b16541}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Obj">
-      <UniqueIdentifier>{70f4443b-1f6a-4655-acac-dd1796e86dd6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{3b02ab56-002b-4949-b010-e162e2418b00}</UniqueIdentifier>
     </Filter>
@@ -49,6 +46,12 @@
     <Filter Include="Scene\Result">
       <UniqueIdentifier>{ea982e2f-00aa-4114-bac7-b2c6599ecb16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Charactor">
+      <UniqueIdentifier>{70f4443b-1f6a-4655-acac-dd1796e86dd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround">
+      <UniqueIdentifier>{d311ad97-946c-45ed-831f-c676bf27eb4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Game.cpp">
@@ -62,9 +65,6 @@
     </ClCompile>
     <ClCompile Include="Source\Mouse\Mouse.cpp">
       <Filter>Mouse</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Obj\Obj.cpp">
-      <Filter>Obj</Filter>
     </ClCompile>
     <ClCompile Include="Source\Scene\Scene.cpp">
       <Filter>Scene</Filter>
@@ -83,6 +83,12 @@
     </ClCompile>
     <ClCompile Include="Source\Scene\Result\Result.cpp">
       <Filter>Scene\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Charactor\Obj.cpp">
+      <Filter>Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BackGround\BackGround.cpp">
+      <Filter>BackGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +113,6 @@
     <ClInclude Include="Source\Mouse\Mouse.h">
       <Filter>Mouse</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Obj\Obj.h">
-      <Filter>Obj</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scene\Scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -128,8 +131,14 @@
     <ClInclude Include="Source\Scene\Result\Result.h">
       <Filter>Scene\Result</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Obj\CharData.h">
-      <Filter>Obj</Filter>
+    <ClInclude Include="Source\Charactor\Obj.h">
+      <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Charactor\CharData.h">
+      <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BackGround\BackGround.h">
+      <Filter>BackGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -125,12 +125,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BackGround\BackGround.cpp" />
+    <ClCompile Include="Source\Charactor\Obj.cpp" />
     <ClCompile Include="Source\GameMane\GameMane.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
     <ClCompile Include="Source\ImageMane\ImageMane.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Mouse\Mouse.cpp" />
-    <ClCompile Include="Source\Obj\Obj.cpp" />
     <ClCompile Include="Source\Scene\Play\Play.cpp" />
     <ClCompile Include="Source\Scene\Result\Result.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
@@ -138,6 +139,9 @@
     <ClCompile Include="Source\Scene\Title\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\BackGround\BackGround.h" />
+    <ClInclude Include="Source\Charactor\CharData.h" />
+    <ClInclude Include="Source\Charactor\Obj.h" />
     <ClInclude Include="Source\etc\Typedef.h" />
     <ClInclude Include="Source\etc\Vector2.h" />
     <ClInclude Include="Source\GameMane\GameMane.h" />
@@ -145,8 +149,6 @@
     <ClInclude Include="Source\Icon\Icon.h" />
     <ClInclude Include="Source\ImageMane\ImageMane.h" />
     <ClInclude Include="Source\Mouse\Mouse.h" />
-    <ClInclude Include="Source\Obj\CharData.h" />
-    <ClInclude Include="Source\Obj\Obj.h" />
     <ClInclude Include="Source\Scene\Play\Play.h" />
     <ClInclude Include="Source\Scene\Result\Result.h" />
     <ClInclude Include="Source\Scene\Scene.h" />

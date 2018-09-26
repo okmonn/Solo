@@ -1,9 +1,11 @@
 #pragma once
 #include "../Scene.h"
 #include <vector>
+#include <memory>
 
 class GameMane;
 class Mouse;
+class BackGround;
 
 class Play :
 	public Scene
@@ -57,6 +59,9 @@ private:
 
 	// マウス
 	Mouse& mouse;
+
+	// 背景
+	std::shared_ptr<BackGround>back;
 
 	// 選択中のキャラ
 	int select;

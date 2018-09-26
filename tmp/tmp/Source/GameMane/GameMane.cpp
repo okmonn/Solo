@@ -1,22 +1,22 @@
 #include "GameMane.h"
-#include "../Obj/Obj.h"
-#include "../Obj/CharData.h"
+#include "../Charactor/Obj.h"
+#include "../Charactor/CharData.h"
 
 // 最大配置数
 #define ARRANGEMENT_MAX 3
 
 // プレイヤーの配置位置
 const Vec2 arrangeMent_pl[] = {
-	{ 0, 0 },
-	{ 0, 150}, 
-	{ 0, 300},
+	{ 0, 30 },
+	{ 0, 170}, 
+	{ 0, 320},
 };
 
 // 敵の配置位置
 const Vec2 arrangeMent_en[] = {
-	{ 510, 0 },
-	{ 510, 150 },
-	{ 510, 300 },
+	{ 510, 30 },
+	{ 510, 170 },
+	{ 510, 320 },
 };
 
 // コンストラクタ
