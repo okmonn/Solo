@@ -1,0 +1,4 @@
+#include "Icon.h"
+
+//exeÉAÉCÉRÉì
+ICON_ID ICON "Material/icon/avicii.ico"

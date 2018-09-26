@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{76f04122-ee07-4ef9-bf65-9a7361cd49af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="etc">
+      <UniqueIdentifier>{8ca8a627-f82b-45c9-8439-055f4d861812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMane">
+      <UniqueIdentifier>{9d393952-5dd6-47a4-a4fd-283d6a9d9f7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Icon">
+      <UniqueIdentifier>{a00e1e56-4e5b-4c36-8ef7-26a83aeec63b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImageMane">
+      <UniqueIdentifier>{8bb23443-ad2b-4dac-b32f-4cb2c7e4deca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mouse">
+      <UniqueIdentifier>{24ad9665-08c7-40d0-b04a-a3f0b4b16541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj">
+      <UniqueIdentifier>{70f4443b-1f6a-4655-acac-dd1796e86dd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{3b02ab56-002b-4949-b010-e162e2418b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Title">
+      <UniqueIdentifier>{ac85178a-a9c4-4ef8-a8b3-e4d951d29895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Play">
+      <UniqueIdentifier>{6bf3721c-5556-4282-8894-acc856ad4560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Select">
+      <UniqueIdentifier>{19e9b121-6663-4eee-927f-91f6bb0322e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Result">
+      <UniqueIdentifier>{ea982e2f-00aa-4114-bac7-b2c6599ecb16}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameMane\GameMane.cpp">
+      <Filter>GameMane</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ImageMane\ImageMane.cpp">
+      <Filter>ImageMane</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mouse\Mouse.cpp">
+      <Filter>Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Obj\Obj.cpp">
+      <Filter>Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Title\Title.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Play\Play.cpp">
+      <Filter>Scene\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Select\Select.cpp">
+      <Filter>Scene\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Result\Result.cpp">
+      <Filter>Scene\Result</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\etc\Vector2.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\etc\Typedef.h">
+      <Filter>etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMane\GameMane.h">
+      <Filter>GameMane</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Icon\Icon.h">
+      <Filter>Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ImageMane\ImageMane.h">
+      <Filter>ImageMane</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mouse\Mouse.h">
+      <Filter>Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Obj\Obj.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Title\Title.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Play\Play.h">
+      <Filter>Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Select\Select.h">
+      <Filter>Scene\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Select\Quest.h">
+      <Filter>Scene\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Result\Result.h">
+      <Filter>Scene\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Obj\CharData.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Source\Icon\Icon.rc">
+      <Filter>Icon</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
