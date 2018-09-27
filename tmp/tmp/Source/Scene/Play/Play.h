@@ -69,6 +69,9 @@ private:
 	// ターゲット
 	int target;
 
+	// 経過時間
+	int flam;
+
 	// 戦闘コマンド
 	std::vector<Command>com;
 

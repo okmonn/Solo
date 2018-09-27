@@ -1,5 +1,5 @@
 #include "Play.h"
-#include "../Result/Result.h"
+#include "../Select/Select.h"
 #include "../../Charactor/Obj.h"
 #include "../../Game/Game.h"
 #include "../../GameMane/GameMane.h"
@@ -13,6 +13,9 @@
 // コマンド最大数
 #define COMMAND_MAX 4
 
+// 終了フレーム
+#define END_FLAM 100
+
 const std::string comName[] = {
 	"こうげき",
 	"ぼうぎょ",
@@ -22,7 +25,7 @@ const std::string comName[] = {
 
 // コンストラクタ
 Play::Play() : mane(GameMane::Get()), mouse(Mouse::Get()), back(std::make_shared<BackGround>()),
-	select(0), target(0)
+	select(0), target(0), flam(0)
 {
 	com.resize(COMMAND_MAX);
 
@@ -247,27 +250,37 @@ void Play::BattleUpData(void)
 // 終了処理
 void Play::EndUpData(void)
 {
-	if (mane.GetPL().size() != 0)
+	++flam;
+	if (flam >= END_FLAM)
 	{
-		for (unsigned int i = 0; i < mane.GetPL().size(); ++i)
-		{
-			mane.GetPL(i)->SetMove(0.0f);
-			if (mane.GetPL(i)->GetState() != State::win)
-			{
-				mane.GetPL(i)->SetState(State::win);
-			}
-		}
+		game.ChangeScene(new Select());
 	}
 	else
 	{
-		for (unsigned int i = 0; i < mane.GetEn().size(); ++i)
+		if (mane.GetPL().size() != 0)
 		{
-			mane.GetEn(i)->SetMove(0.0f);
-			if (mane.GetEn(i)->GetState() != State::win)
+			for (unsigned int i = 0; i < mane.GetPL().size(); ++i)
 			{
-				mane.GetEn(i)->SetState(State::win);
+				mane.GetPL(i)->SetMove(0.0f);
+				if (mane.GetPL(i)->GetState() != State::win)
+				{
+					mane.GetPL(i)->SetState(State::win);
+				}
 			}
 		}
+		else
+		{
+			for (unsigned int i = 0; i < mane.GetEn().size(); ++i)
+			{
+				mane.GetEn(i)->SetMove(0.0f);
+				if (mane.GetEn(i)->GetState() != State::win)
+				{
+					mane.GetEn(i)->SetState(State::win);
+				}
+			}
+		}
+
+		mane.UpData();
 	}
 }
 

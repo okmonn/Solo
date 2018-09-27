@@ -161,7 +161,6 @@ private:
 
 	// UŒ‚‚Ìˆ—
 	void Attack1(void);
-	void Attack2(void);
 
 	// ‰r¥‘Ò‹@‚Ìˆ—
 	void MasicSet(void);

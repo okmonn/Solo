@@ -19,6 +19,9 @@
 // アニメーション数
 #define ANIM_MAX 3
 
+// 体力の最大数
+#define HP_MAX 100
+
 // コンストラクタ
 Obj::Obj(const std::string& id, const int& hp, const int& attack, const int& def, const float& speed, const Vec2& pos, const bool& reverse) : mane(ImageMane::Get()),
 	id(id + ".png"), image(mane.LoadImg("Material/img/" + this->id)), circle(mane.LoadImg("Material/img/Timer.png")), attackFlag(false), tmpDef(0),
@@ -56,6 +59,7 @@ void Obj::SetState(const State & state)
 	switch (state)
 	{
 	case State::go:
+		next = State::attack1;
 		func = &Obj::Go;
 		break;
 	case State::attack1:
@@ -89,6 +93,12 @@ void Obj::Draw(void)
 	if (state != State::win)
 	{
 		DrawCircleGauge(pos.x + size.x * large / 2, pos.y + size.y * large / 2, move, circle);
+	}
+
+	if (hp > 0)
+	{
+		DrawBox(pos.x, pos.y - 20, pos.x + size.x * large, pos.y - 10, GetColor(255, 255, 255), true);
+		DrawBox(pos.x + 2, pos.y - 18, pos.x - 2 + size.x * large * hp / HP_MAX, pos.y - 12, GetColor(0, 0, 255), true);
 	}
 
 	if (reverse == false)
@@ -178,20 +188,6 @@ void Obj::Attack1(void)
 		{
 			attackFlag = true;
 		}
-	}
-}
-
-// 攻撃時の処理
-void Obj::Attack2(void)
-{
-	if (state != State::attack2)
-	{
-		return;
-	}
-
-	if (AnimEnd() == true)
-	{
-		SetState(State::go);
 	}
 }
 
