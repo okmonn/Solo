@@ -25,8 +25,12 @@
 // コンストラクタ
 Obj::Obj(const std::string& id, const int& hp, const int& attack, const int& def, const float& speed, const Vec2& pos, const bool& reverse) : mane(ImageMane::Get()),
 	id(id + ".png"), image(mane.LoadImg("Material/img/" + this->id)), circle(mane.LoadImg("Material/img/Timer.png")), attackFlag(false), tmpDef(0),
-	pos(pos), size(RECT_SIZE), index(0), flam(0), large(2), state(State::go), next(State::attack1), reverse(reverse), move(0.0f), target(0), die(false)
+	pos(pos), size(RECT_SIZE), index(0), flam(0), large(2), state(State::go), next(State::attack1), reverse(reverse), move(0.0f), target(0), die(false), old_hp(this->hp)
 {
+	damage.pos = { pos.x + size.x / 2, pos.y };
+	damage.num.str("");
+	damageFlam = 0;
+
 	anim.clear();
 
 	this->hp = hp;
@@ -55,6 +59,7 @@ void Obj::SetState(const State & state)
 	this->state = state;
 	index = 0;
 	flam  = 0;
+	attackFlag = false;
 
 	switch (state)
 	{
@@ -116,6 +121,20 @@ void Obj::Draw(void)
 			pos.x, pos.y + size.y * large,
 			pos.x + size.x * large, pos.y + size.y * large,
 			size.x * (anim[state][index] % RECT_X), size.y * (anim[state][index] / RECT_X), size.x, size.y, image, true);
+	}
+
+	if (damage.num.str().size() != 0 && state != State::die)
+	{
+		++damageFlam;
+		if (damageFlam <= 30)
+		{
+			DrawString(damage.pos.x, damage.pos.y, damage.num.str().c_str(), GetColor(255, 0, 0));
+		}
+		else
+		{
+			damage.num.str("");
+			damageFlam = 0;
+		}
 	}
 }
 
@@ -261,6 +280,11 @@ void Obj::Damage(void)
 	}
 	else
 	{
+		if (damage.num.str().size() == 0)
+		{
+			damage.num << old_hp - hp << std::flush;
+		}
+
 		tmpDef = 0;
 		if (AnimEnd() == true)
 		{

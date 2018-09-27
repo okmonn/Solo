@@ -4,6 +4,7 @@
 #include <vector>
 #include <list>
 #include <memory>
+#include <map>
 
 class Obj;
 
@@ -47,6 +48,14 @@ public:
 	// 敵キャラの取得
 	std::shared_ptr<Obj> GetEn(int index);
 
+	// キャラIDの取得
+	std::vector<std::string> GetID(void) const {
+		return id;
+	}
+	std::string GetID(int i) const {
+		return id[i];
+	}
+
 private:
 	// コンストラクタ
 	GameMane();
@@ -82,5 +91,8 @@ private:
 
 	// 敵キャラ
 	std::list<std::shared_ptr<Obj>>enemy;
+
+	// キャラIDリスト
+	std::vector<std::string>id;
 };
 

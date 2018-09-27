@@ -52,6 +52,9 @@
     <Filter Include="BackGround">
       <UniqueIdentifier>{d311ad97-946c-45ed-831f-c676bf27eb4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Choose">
+      <UniqueIdentifier>{1e16287b-23a8-4c6e-a47d-d2c07fb22fd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Game.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="Source\BackGround\BackGround.cpp">
       <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Choose\Choose.cpp">
+      <Filter>Scene\Choose</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="Source\BackGround\BackGround.h">
       <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Choose\Choose.h">
+      <Filter>Scene\Choose</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

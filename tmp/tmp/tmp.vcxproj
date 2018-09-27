@@ -138,6 +138,7 @@
     <ClCompile Include="Source\ImageMane\ImageMane.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Mouse\Mouse.cpp" />
+    <ClCompile Include="Source\Scene\Choose\Choose.cpp" />
     <ClCompile Include="Source\Scene\Play\Play.cpp" />
     <ClCompile Include="Source\Scene\Result\Result.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Source\Icon\Icon.h" />
     <ClInclude Include="Source\ImageMane\ImageMane.h" />
     <ClInclude Include="Source\Mouse\Mouse.h" />
+    <ClInclude Include="Source\Scene\Choose\Choose.h" />
     <ClInclude Include="Source\Scene\Play\Play.h" />
     <ClInclude Include="Source\Scene\Result\Result.h" />
     <ClInclude Include="Source\Scene\Scene.h" />

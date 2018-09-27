@@ -22,18 +22,16 @@ const Vec2 arrangeMent_en[] = {
 // コンストラクタ
 GameMane::GameMane()
 {
+	id.clear();
 	plID.resize(ARRANGEMENT_MAX);
 	enID.resize(ARRANGEMENT_MAX);
 	pl.clear();
 	enemy.clear();
 
-	SetID_PL(0, "1054010303");
-	SetID_PL(1, "1055010303");
-	SetID_PL(2, "1055010303");
-
-	SetID_EN(0, "1054010303");
-	SetID_EN(1, "1055010303");
-	SetID_EN(2, "1055010303");
+	for (auto itr = charData.begin(); itr != charData.end(); ++itr)
+	{
+		id.push_back(itr->first);
+	}
 
 	CreateObj();
 }
@@ -80,7 +78,7 @@ void GameMane::CreatePl(const std::string & id, const int& hp, const int& attack
 {
 	if (charData.find(id) != charData.end())
 	{
-		Data tmp = charData[id];
+		CharData tmp = charData[id];
 		pl.push_back(std::make_shared<Obj>(id, tmp.hp, tmp.attack, tmp.def, tmp.speed, pos, reverse));
 	}
 }
@@ -90,7 +88,7 @@ void GameMane::CreateEnemy(const std::string & id, const int& hp, const int& att
 {
 	if (charData.find(id) != charData.end())
 	{
-		Data tmp = charData[id];
+		CharData tmp = charData[id];
 		enemy.push_back(std::make_shared<Obj>(id, tmp.hp, tmp.attack, tmp.def, tmp.speed, pos, reverse));
 	}
 }

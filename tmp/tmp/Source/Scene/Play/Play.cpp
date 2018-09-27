@@ -33,12 +33,13 @@ Play::Play() : mane(GameMane::Get()), mouse(Mouse::Get()), back(std::make_shared
 	updata = &Play::BattleUpData;
 
 	ComInit();
-	Load("Material/img/Target.png", "target", { 150, 150 }, { mane.GetEn(target)->GetPos().x - TARGET_OFFSET, mane.GetEn(target)->GetPos().y });
+	Load("Material/img/Target.png", "target", { 150, 150 }, { mane.GetEn(target)->GetPos().x - TARGET_OFFSET, mane.GetEn(target)->GetPos().y - TARGET_OFFSET });
 }
 
 // デストラクタ
 Play::~Play()
 {
+	mane.Clear();
 }
 
 // コマンドのセット
@@ -83,7 +84,9 @@ void Play::BattleDraw(void)
 	//ターゲットキャラ
 	if (mane.GetEn().size() != 0)
 	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
 		Scene::DrawGraph("target");
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 }
 
@@ -91,6 +94,15 @@ void Play::BattleDraw(void)
 void Play::EndDraw(void)
 {
 	mane.Draw();
+
+	if (mane.GetPL().size() != 0)
+	{
+
+	}
+	else
+	{
+
+	}
 }
 
 // 描画
@@ -106,6 +118,7 @@ void Play::BattleUpData(void)
 {
 	if (mane.GetEn().size() == 0 || mane.GetPL().size() == 0)
 	{
+		flam = 0;
 		draw = &Play::EndDraw;
 		updata = &Play::EndUpData;
 	}
@@ -208,6 +221,10 @@ void Play::BattleUpData(void)
 					mane.GetEn(target)->SetState(State::damage);
 					mane.GetPL(i)->SetAttackFlag(false);
 				}
+				else
+				{
+					mane.GetPL(i)->SetAttackFlag(false);
+				}
 			}
 		}
 
@@ -220,6 +237,10 @@ void Play::BattleUpData(void)
 				{
 					mane.GetPL(0)->Decrease(mane.GetEn(i)->GetAttack());
 					mane.GetPL(0)->SetState(State::damage);
+					mane.GetEn(i)->SetAttackFlag(false);
+				}
+				else
+				{
 					mane.GetEn(i)->SetAttackFlag(false);
 				}
 			}
@@ -242,7 +263,7 @@ void Play::BattleUpData(void)
 				target = 0;
 			}
 
-			image["target"].pos = { mane.GetEn(target)->GetPos().x - 15, mane.GetEn(target)->GetPos().y };
+			image["target"].pos = { mane.GetEn(target)->GetPos().x - TARGET_OFFSET, mane.GetEn(target)->GetPos().y - TARGET_OFFSET };
 		}
 	}
 }

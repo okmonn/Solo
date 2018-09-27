@@ -10,6 +10,7 @@ class BackGround;
 class Play :
 	public Scene
 {
+	// コマンド
 	struct Command {
 		//名前
 		std::string name;
@@ -22,6 +23,15 @@ class Play :
 		//オフセット
 		Vec2 offset;
 	};
+
+	// ダメージ
+	struct Damage {
+		//ダメージ
+		std::ostringstream num;
+		//座標
+		Vec2 pos;
+	};
+
 public:
 	// コンストラクタ
 	Play();

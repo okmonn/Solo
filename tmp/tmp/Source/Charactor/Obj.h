@@ -4,11 +4,20 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <sstream>
 
 class ImageMane;
 
 class Obj
 {
+	// ダメージ
+	struct Dmg {
+		//ダメージ値
+		std::ostringstream num;
+		//座標
+		Vec2 pos;
+	};
+
 public:
 	// コンストラクタ
 	Obj(const std::string& id, const int& hp, const int& attack, const int& def, const float& speed, const Vec2& pos, const bool& reverse);
@@ -115,6 +124,7 @@ public:
 	void Decrease(const int& i) {
 		if (tmpDef - i < 0)
 		{
+			old_hp = this->hp;
 			this->hp += tmpDef - i;
 		}
 	}
@@ -246,6 +256,15 @@ private:
 
 	// 現在の防御値
 	int tmpDef;
+
+	// 前の体力値
+	int old_hp;
+
+	// ダメージフレーム
+	int damageFlam;
+
+	// ダメージ
+	Dmg damage;
 
 	// 関数ポインタ
 	void (Obj::*func)(void);
