@@ -31,13 +31,15 @@ Play::Play() : mane(GameMane::Get()), mouse(Mouse::Get()), stage(Stage::Get()), 
 	mane.Clear();
 	com.resize(COMMAND_MAX);
 
-	draw = &Play::BattleDraw;
-	updata = &Play::BattleUpData;
+	draw = &Play::SetDraw;
+	updata = &Play::SetUpData;
 
 	ComInit();
 	LoadEnemy();
 	mane.CreateObj();
 	Load("Material/img/Target.png", "target", { 150, 150 }, { mane.GetEn(target)->GetPos().x - TARGET_OFFSET, mane.GetEn(target)->GetPos().y - TARGET_OFFSET });
+	Load("Material/img/GameStart.png", "start1", { game.GetWinSize().x, game.GetWinSize().y - 100 });
+	Load("Material/img/GameStart.png", "start2", { game.GetWinSize().x , 100 }, { 0, game.GetWinSize().y - 100 });
 }
 
 // デストラクタ
@@ -71,6 +73,17 @@ void Play::LoadEnemy(void)
 	{
 		mane.SetID_EN(i, stage.GetID(i));
 	}
+}
+
+// 戦闘前描画
+void Play::SetDraw(void)
+{
+	mane.Draw();
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 - flam);
+	DrawRectGraph(image["start1"].pos.x, image["start1"].pos.y, 0, 0, image["start1"].size.x, image["start1"].size.y, image["start1"].image, true);
+	DrawRectGraph(image["start2"].pos.x, image["start2"].pos.y, 0, image["start1"].size.y, image["start2"].size.x, image["start2"].size.y, image["start2"].image, true);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 // 戦闘描画
@@ -123,6 +136,21 @@ void Play::Draw(void)
 	back->Draw();
 
 	(this->*draw)();
+}
+
+// 戦闘前処理
+void Play::SetUpData(void)
+{
+	++flam;
+	if (flam >= 150)
+	{
+		flam = 0;
+		draw = &Play::BattleDraw;
+		updata = &Play::BattleUpData;
+	}
+
+	image["start1"].pos.y -= image["start1"].size.y / 100;
+	image["start2"].pos.y += image["start2"].size.y / 100;
 }
 
 // 戦闘処理

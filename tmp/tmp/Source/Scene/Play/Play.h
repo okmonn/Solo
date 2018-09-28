@@ -55,11 +55,17 @@ private:
 	// “G‚Ì“Ç‚İ‚İ
 	void LoadEnemy(void);
 
+	// í“¬‘O•`‰æ
+	void SetDraw(void);
+
 	// í“¬•`‰æ
 	void BattleDraw(void);
 
 	// I—¹•`‰æ
 	void EndDraw(void);
+
+	// í“¬‘Oˆ—
+	void SetUpData(void);
 
 	// í“¬ˆ—
 	void BattleUpData(void);

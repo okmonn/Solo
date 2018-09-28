@@ -60,6 +60,15 @@ void Choose::Load(void)
 // •`‰æ
 void Choose::Draw(void)
 {
+	//–îˆó
+	for (int i = 0; i < 2; ++i)
+	{
+		DrawTriangle(pos[target].x + (size.x * large * i) + ALLREY_OFFSET * (2 - (1 + i) - i), pos[target].y + (size.y * large) / 2 - ALLREY_OFFSET * 2,
+			pos[target].x + (size.x * large * i) - ALLREY_OFFSET * (2 - (1 + i) - i), pos[target].y + (size.y * large) / 2,
+			pos[target].x + (size.x * large * i) + ALLREY_OFFSET * (2 - (1 + i) - i), pos[target].y + (size.y * large) / 2 + ALLREY_OFFSET * 2,
+			GetColor(255, 255, 255), true);
+	}
+
 	for (unsigned int i = 0; i < select.size(); ++i)
 	{
 		DrawRectModiGraph(pos[i].x, pos[i].y,
@@ -67,15 +76,6 @@ void Choose::Draw(void)
 			pos[i].x + size.x * large, pos[i].y + size.y * large,
 			pos[i].x, pos[i].y + size.y * large,
 			size.x * index, size.y * index, size.x, size.y, handle[select[i]], true);
-	}
-
-	//–îˆó
-	for (int i = 0; i < 2; ++i)
-	{
-		DrawTriangle(pos[target].x + (size.x * large * i) + ALLREY_OFFSET * (2 - (1 + i) - i), pos[target].y + (size.y * large) / 2 - ALLREY_OFFSET * 2,
-			         pos[target].x + (size.x * large * i) - ALLREY_OFFSET * (2 - (1 + i) - i), pos[target].y + (size.y * large) / 2,
-			         pos[target].x + (size.x * large * i) + ALLREY_OFFSET * (2 - (1 + i) - i), pos[target].y + (size.y * large) / 2 + ALLREY_OFFSET * 2,
-			         GetColor(255, 255, 255), true);
 	}
 
 	DrawBox(pos[target].x - BOX_OFFSET, pos[target].y - BOX_OFFSET, 
@@ -116,9 +116,19 @@ void Choose::UpData(void)
 		{
 			if (mouse.TrigerClick() == true)
 			{
-				if (i % 2 == 0)
+				unsigned int num = select[target];
+				bool flag = true;
+				while (flag)
 				{
-					unsigned int num = ((int)select[target] - 1 < 0) ? handle.size() - 1 : --select[target];
+					if (i % 2 == 0)
+					{
+						num = ((int)num - 1 < 0) ? handle.size() - 1 : --num;
+					}
+					else
+					{
+						num = (num + 1 >= handle.size()) ? 0 : ++num;
+					}
+
 					for (unsigned int n = 0; n < select.size(); ++n)
 					{
 						if (target == n)
@@ -126,37 +136,27 @@ void Choose::UpData(void)
 							continue;
 						}
 
-						if (num == select[n])
-						{
-							num = ((int)select[target] - 1 < 0) ? handle.size() - 1 : --select[target];
-						}
-					}
-					select[target] = num;
-				}
-				else
-				{
-					unsigned num = (select[target] + 1 >= handle.size()) ? 0 : ++select[target];
-					for (unsigned int n = 0; n < select.size(); ++n)
-					{
-						if (target == n)
-						{
-							continue;
-						}
+						flag = true;
 
 						if (num == select[n])
 						{
-							num = (select[target] + 1 >= handle.size()) ? 0 : ++select[target];
+							break;
+						}
+						else
+						{
+							flag = false;
 						}
 					}
-					select[target] = num;
 				}
+
+				select[target] = num;
 			}
 			break;
 		}
 	}
 
-	if ((playPos.x - 10 < mouse.GetPos().x && mouse.GetPos().x < playPos.x - 10 + playPos.x + playSize.x)
-		&& (playPos.y - 10 < mouse.GetPos().y && mouse.GetPos().y < playPos.y - 10 + playPos.y + playSize.y))
+	if ((playPos.x - 10 < mouse.GetPos().x && mouse.GetPos().x < playPos.x - 10 + playSize.x)
+		&& (playPos.y - 10 < mouse.GetPos().y && mouse.GetPos().y < playPos.y - 10 + playSize.y))
 	{
 		color = GetColor(255, 0, 0);
 
