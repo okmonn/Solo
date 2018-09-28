@@ -144,6 +144,7 @@
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Scene\Select\Select.cpp" />
     <ClCompile Include="Source\Scene\Title\Title.cpp" />
+    <ClCompile Include="Source\Stage\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\BackGround\BackGround.h" />
@@ -163,6 +164,8 @@
     <ClInclude Include="Source\Scene\Select\Quest.h" />
     <ClInclude Include="Source\Scene\Select\Select.h" />
     <ClInclude Include="Source\Scene\Title\Title.h" />
+    <ClInclude Include="Source\Stage\Stage.h" />
+    <ClInclude Include="Source\Stage\StageData.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\Icon\Icon.rc" />

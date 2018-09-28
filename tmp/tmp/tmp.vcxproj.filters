@@ -55,6 +55,9 @@
     <Filter Include="Scene\Choose">
       <UniqueIdentifier>{1e16287b-23a8-4c6e-a47d-d2c07fb22fd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stage">
+      <UniqueIdentifier>{0d03e614-8996-4a33-91a4-19429644459e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Game.cpp">
@@ -95,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="Source\Scene\Choose\Choose.cpp">
       <Filter>Scene\Choose</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stage\Stage.cpp">
+      <Filter>Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,12 @@
     </ClInclude>
     <ClInclude Include="Source\Scene\Choose\Choose.h">
       <Filter>Scene\Choose</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stage\Stage.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stage\StageData.h">
+      <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

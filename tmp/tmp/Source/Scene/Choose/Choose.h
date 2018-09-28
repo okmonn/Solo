@@ -22,6 +22,9 @@ public:
 	void UpData(void);
 
 private:
+	// 選択インデックスの初期化
+	void InitSelect(void);
+
 	// 画像読み込み
 	void Load(void);
 
@@ -40,6 +43,27 @@ private:
 
 	// インデックス
 	unsigned int index;
+
+	// 選択インデックス
+	std::vector<unsigned int>select;
+
+	// ターゲット
+	int target;
+
+	// キャラサイズ
+	Vec2 size;
+
+	// 拡大率
+	int large;
+
+	// プレイ移行コマンド座標
+	Vec2 playPos;
+
+	// プレイ移行コマンドサイズ
+	Vec2 playSize;
+
+	// 色
+	unsigned int color;
 
 	// 画像ハンドル
 	std::vector<int>handle;

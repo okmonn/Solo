@@ -5,6 +5,7 @@
 
 class GameMane;
 class Mouse;
+class Stage;
 class BackGround;
 
 class Play :
@@ -51,6 +52,9 @@ private:
 	// コマンドの初期化
 	void ComInit(void);
 
+	// 敵の読み込み
+	void LoadEnemy(void);
+
 	// 戦闘描画
 	void BattleDraw(void);
 
@@ -69,6 +73,9 @@ private:
 
 	// マウス
 	Mouse& mouse;
+
+	// ステージ
+	Stage& stage;
 
 	// 背景
 	std::shared_ptr<BackGround>back;

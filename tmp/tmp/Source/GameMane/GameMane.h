@@ -25,6 +25,9 @@ public:
 	// IDのセット
 	void SetID_EN(int index, const std::string& id);
 
+	// キャラの生成
+	void CreateObj(void);
+
 	// 描画
 	void Draw(void);
 
@@ -69,9 +72,6 @@ private:
 	void CreatePl(const std::string& id, const int& hp, const int& attack, const int& def, const float& speed, const Vec2& pos = 0, const bool& reverse = true);
 	// 敵キャラの生成
 	void CreateEnemy(const std::string& id, const int& hp, const int& attack, const int& def, const float& speed, const Vec2& pos = 0, const bool& reverse = false);
-
-	// キャラの生成
-	void CreateObj(void);
 
 	// 描画
 	void Draw(const std::list<std::shared_ptr<Obj>>& list);

@@ -1,14 +1,15 @@
 #include "Select.h"
 #include "Quest.h"
-#include "../Play/Play.h"
+#include "../Choose/Choose.h"
 #include "../../Game/Game.h"
 #include "../../Mouse/Mouse.h"
+#include "../../Stage/Stage.h"
 #include "DxLib.h"
 #include <iostream>
 
 // コンストラクタ
 Select::Select() :
-	mouse(Mouse::Get())
+	mouse(Mouse::Get()), stage(Stage::Get())
 {
 	quest.resize(QUESTNAME_MAX);
 
@@ -64,7 +65,9 @@ void Select::UpData(void)
 			quest[i].color = GetColor(255, 0, 0);
 			if (mouse.TrigerClick() == true)
 			{
-				game.ChangeScene(new Play());
+				stage.SetIndex(i);
+				stage.LoadStage();
+				game.ChangeScene(new Choose());
 			}
 		}
 		else

@@ -3,6 +3,7 @@
 #include <vector>
 
 class Mouse;
+class Stage;
 
 class Select :
 	public Scene
@@ -43,6 +44,9 @@ private:
 
 	// マウス
 	Mouse& mouse;
+
+	// ステージ
+	Stage& stage;
 
 	// クエスト項目
 	std::vector<QuestName>quest;

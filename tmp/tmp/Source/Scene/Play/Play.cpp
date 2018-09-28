@@ -3,6 +3,7 @@
 #include "../../Charactor/Obj.h"
 #include "../../Game/Game.h"
 #include "../../GameMane/GameMane.h"
+#include "../../Stage/Stage.h"
 #include "../../Mouse/Mouse.h"
 #include "../../BackGround/BackGround.h"
 #include "DxLib.h"
@@ -24,22 +25,24 @@ const std::string comName[] = {
 };
 
 // コンストラクタ
-Play::Play() : mane(GameMane::Get()), mouse(Mouse::Get()), back(std::make_shared<BackGround>()),
+Play::Play() : mane(GameMane::Get()), mouse(Mouse::Get()), stage(Stage::Get()), back(std::make_shared<BackGround>()),
 	select(0), target(0), flam(0)
 {
+	mane.Clear();
 	com.resize(COMMAND_MAX);
 
 	draw = &Play::BattleDraw;
 	updata = &Play::BattleUpData;
 
 	ComInit();
+	LoadEnemy();
+	mane.CreateObj();
 	Load("Material/img/Target.png", "target", { 150, 150 }, { mane.GetEn(target)->GetPos().x - TARGET_OFFSET, mane.GetEn(target)->GetPos().y - TARGET_OFFSET });
 }
 
 // デストラクタ
 Play::~Play()
 {
-	mane.Clear();
 }
 
 // コマンドのセット
@@ -58,6 +61,15 @@ void Play::ComInit(void)
 	for (int i = 0; i < COMMAND_MAX; ++i)
 	{
 		SetCom(i, comName[i], { 200 + 150 * (i % (COMMAND_MAX / 2)), 200 + 100 * (i / (COMMAND_MAX / 2)) }, { 100, 50 });
+	}
+}
+
+// 敵の読み込み
+void Play::LoadEnemy(void)
+{
+	for (unsigned int i = 0; i < stage.GetID().size(); ++i)
+	{
+		mane.SetID_EN(i, stage.GetID(i));
 	}
 }
 
@@ -149,6 +161,7 @@ void Play::BattleUpData(void)
 						break;
 					}
 
+					break;
 				}
 			}
 			else
@@ -170,6 +183,7 @@ void Play::BattleUpData(void)
 					{
 						mane.GetPL(pl)->SetTarget(target);
 					}
+					break;
 				}
 			}
 		}
@@ -184,6 +198,7 @@ void Play::BattleUpData(void)
 				{
 					select = i;
 				}
+				break;
 			}
 		}
 

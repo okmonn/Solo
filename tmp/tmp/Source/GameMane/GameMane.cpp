@@ -32,8 +32,6 @@ GameMane::GameMane()
 	{
 		id.push_back(itr->first);
 	}
-
-	CreateObj();
 }
 
 // デストラクタ
