@@ -15,6 +15,9 @@
 // 配置最大数
 #define ARRANGEMENT 3
 
+// かっこのオフセット
+const Vec2 offset = {12, 35};
+
 Vec2 pos = {};
 
 // コンストラクタ
@@ -60,6 +63,9 @@ void Tutorial::Draw(void)
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 124);
 		DrawBox(par[cnt].left.x + pos.x, par[cnt].left.y + pos.y, par[cnt].right.x + pos.x, par[cnt].right.y + pos.y, GetColor(255, 255, 255), true);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+		DrawString(par[cnt].left.x - 1, par[cnt].left.y - 5, "「", GetColor(255, 0, 0));
+		DrawString(par[cnt].right.x - offset.x, par[cnt].right.y - offset.y, "」", GetColor(255, 0, 0));
 	}
 }
 
@@ -105,17 +111,21 @@ void Tutorial::UpData(void)
 	if (CheckHitKey(KEY_INPUT_RIGHT))
 	{
 		pos.x += 1;
+		printf("%d, %d\n", pos.x, pos.y);
 	}
 	else if (CheckHitKey(KEY_INPUT_LEFT))
 	{
 		pos.x -= 1;
+		printf("%d, %d\n", pos.x, pos.y);
 	}
 	else if (CheckHitKey(KEY_INPUT_UP))
 	{
 		pos.y -= 1;
+		printf("%d, %d\n", pos.x, pos.y);
 	}
 	else if (CheckHitKey(KEY_INPUT_DOWN))
 	{
 		pos.y += 1;
+		printf("%d, %d\n", pos.x, pos.y);
 	}
 }
