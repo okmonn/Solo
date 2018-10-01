@@ -1,4 +1,5 @@
 #include "Tutorial.h"
+#include "TutorialData.h"
 #include "../Select/Select.h"
 #include "../../Charactor/Obj.h"
 #include "../../Game/Game.h"
@@ -13,6 +14,8 @@
 
 // 配置最大数
 #define ARRANGEMENT 3
+
+Vec2 pos = {};
 
 // コンストラクタ
 Tutorial::Tutorial() : 
@@ -52,8 +55,11 @@ void Tutorial::Draw(void)
 
 	(this->*draw)();
 
-	if (draw == &Tutorial::ButtleDraw)
+	if (draw == &Tutorial::ButtleDraw && cnt < par.size())
 	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 124);
+		DrawBox(par[cnt].left.x + pos.x, par[cnt].left.y + pos.y, par[cnt].right.x + pos.x, par[cnt].right.y + pos.y, GetColor(255, 255, 255), true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 }
 
@@ -75,14 +81,12 @@ void Tutorial::SetUpData(void)
 // 自陣と敵陣の説明
 void Tutorial::Description1(void)
 {
-	const int cntMax = 2;
-
 	if (mouse.TrigerClick() == true)
 	{
 		++cnt;
-		if (cnt > cntMax)
+		if (cnt >= par.size())
 		{
-
+			updata = &Tutorial::ButtleUpData;
 		}
 	}
 }
@@ -97,4 +101,21 @@ void Tutorial::UpData(void)
 	}
 
 	(this->*updata)();
+
+	if (CheckHitKey(KEY_INPUT_RIGHT))
+	{
+		pos.x += 1;
+	}
+	else if (CheckHitKey(KEY_INPUT_LEFT))
+	{
+		pos.x -= 1;
+	}
+	else if (CheckHitKey(KEY_INPUT_UP))
+	{
+		pos.y -= 1;
+	}
+	else if (CheckHitKey(KEY_INPUT_DOWN))
+	{
+		pos.y += 1;
+	}
 }

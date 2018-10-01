@@ -176,6 +176,9 @@
     <ClInclude Include="Source\Scene\BasePlay.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Scene\Tutorial\TutorialData.h">
+      <Filter>Scene\Tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\Icon\Icon.rc">

@@ -19,7 +19,7 @@ public:
 private:
 	// プレイヤーの読み込み
 	void LoadPlayer(void);
-
+	
 	// 戦闘前処理
 	void SetUpData(void);
 
@@ -28,7 +28,7 @@ private:
 	
 
 	// 進行状況カウント
-	int cnt;
+	unsigned int cnt;
 
 	// 関数ポインタ
 	void (Tutorial::*draw)(void);
