@@ -1,6 +1,7 @@
 #include "Select.h"
 #include "Quest.h"
 #include "../Choose/Choose.h"
+#include "../Tutorial/Tutorial.h"
 #include "../../Game/Game.h"
 #include "../../Mouse/Mouse.h"
 #include "../../Stage/Stage.h"
@@ -67,7 +68,16 @@ void Select::UpData(void)
 			{
 				stage.SetIndex(i);
 				stage.LoadStage();
-				game.ChangeScene(new Choose());
+				if (i != 0)
+				{
+					game.ChangeScene(new Choose());
+				}
+				else
+				{
+					game.ChangeScene(new Tutorial());
+				}
+
+				break;
 			}
 		}
 		else

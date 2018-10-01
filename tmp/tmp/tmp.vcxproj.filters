@@ -58,6 +58,9 @@
     <Filter Include="Stage">
       <UniqueIdentifier>{0d03e614-8996-4a33-91a4-19429644459e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Tutorial">
+      <UniqueIdentifier>{32dcf92e-2a1a-4447-8499-59557c521b73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game\Game.cpp">
@@ -101,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="Source\Main.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\Tutorial\Tutorial.cpp">
+      <Filter>Scene\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\BasePlay.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +169,12 @@
     </ClInclude>
     <ClInclude Include="Source\Stage\StageData.h">
       <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Tutorial\Tutorial.h">
+      <Filter>Scene\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\BasePlay.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -31,6 +31,7 @@ Choose::Choose() : image(ImageMane::Get()), mane(GameMane::Get()), mouse(Mouse::
 
 	Load();
 	InitSelect();
+	Scene::Load("Material/img/ChooseBack.png", "back", game.GetWinSize());
 }
 
 // ƒfƒXƒgƒ‰ƒNƒ^
@@ -60,6 +61,9 @@ void Choose::Load(void)
 // •`‰æ
 void Choose::Draw(void)
 {
+	//”wŒi
+	Scene::DrawGraph("back");
+
 	//–îˆó
 	for (int i = 0; i < 2; ++i)
 	{

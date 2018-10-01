@@ -1,4 +1,4 @@
-#include "Play.h"
+#include "Tutorial.h"
 #include "../Select/Select.h"
 #include "../../Charactor/Obj.h"
 #include "../../Game/Game.h"
@@ -11,59 +11,89 @@
 // ターゲット画像のオフセット
 #define TARGET_OFFSET 15
 
-// コマンド最大数
-#define COMMAND_MAX 4
+// 配置最大数
+#define ARRANGEMENT 3
 
 // コンストラクタ
-Play::Play()
+Tutorial::Tutorial() : 
+	cnt(0)
 {
 	mane.Clear();
 	LoadEnemy();
+	LoadPlayer();
 	mane.CreateObj();
 
 	Load("Material/img/Target.png", "target", { 150, 150 }, { mane.GetEn(target)->GetPos().x - TARGET_OFFSET, mane.GetEn(target)->GetPos().y - TARGET_OFFSET });
 	Load("Material/img/GameStart.png", "start1", { game.GetWinSize().x, game.GetWinSize().y - 100 });
 	Load("Material/img/GameStart.png", "start2", { game.GetWinSize().x , 100 }, { 0, game.GetWinSize().y - 100 });
 
-	draw = &Play::SetDraw;
-	updata = &Play::SetUpData;
+	draw = &Tutorial::SetDraw;
+	updata = &Tutorial::SetUpData;
 }
 
 // デストラクタ
-Play::~Play()
+Tutorial::~Tutorial()
 {
 }
 
+// プレイヤーの読み込み
+void Tutorial::LoadPlayer(void)
+{
+	for (unsigned int i = 0; i < ARRANGEMENT; ++i)
+	{
+		mane.SetID_PL(i, mane.GetID(i));
+	}
+}
+
 // 描画
-void Play::Draw(void)
+void Tutorial::Draw(void)
 {
 	back->Draw();
 
 	(this->*draw)();
+
+	if (draw == &Tutorial::ButtleDraw)
+	{
+	}
 }
 
 // 戦闘前処理
-void Play::SetUpData(void)
+void Tutorial::SetUpData(void)
 {
 	++flam;
 	if (flam >= 150)
 	{
 		flam = 0;
-		draw = &Play::ButtleDraw;
-		updata = &Play::ButtleUpData;
+		draw = &Tutorial::ButtleDraw;
+		updata = &Tutorial::Description1;
 	}
 
 	image["start1"].pos.y -= image["start1"].size.y / 100;
 	image["start2"].pos.y += image["start2"].size.y / 100;
 }
 
+// 自陣と敵陣の説明
+void Tutorial::Description1(void)
+{
+	const int cntMax = 2;
+
+	if (mouse.TrigerClick() == true)
+	{
+		++cnt;
+		if (cnt > cntMax)
+		{
+
+		}
+	}
+}
+
 // 処理
-void Play::UpData(void)
+void Tutorial::UpData(void)
 {
 	if (mane.GetPL().size() == 0 || mane.GetEn().size() == 0)
 	{
-		draw = &Play::EndDraw;
-		updata = &Play::EndUpData;
+		draw = &Tutorial::EndDraw;
+		updata = &Tutorial::EndUpData;
 	}
 
 	(this->*updata)();
