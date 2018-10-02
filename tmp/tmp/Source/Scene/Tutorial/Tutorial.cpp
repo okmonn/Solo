@@ -31,7 +31,8 @@ Tutorial::Tutorial() :
 	Load("Material/img/Target.png", "target", { 150, 150 }, { mane.GetEn(target)->GetPos().x - TARGET_OFFSET, mane.GetEn(target)->GetPos().y - TARGET_OFFSET });
 	Load("Material/img/GameStart.png", "start1", { game.GetWinSize().x, game.GetWinSize().y - 100 });
 	Load("Material/img/GameStart.png", "start2", { game.GetWinSize().x , 100 }, { 0, game.GetWinSize().y - 100 });
-
+	Load("Material/img/hukidasi.png", "hukidasi", {size.x + 50, size.y + 80}, { pos.x - 30, pos.y - 20 });
+	
 	draw = &Tutorial::SetDraw;
 	updata = &Tutorial::SetUpData;
 }
@@ -106,7 +107,7 @@ void Tutorial::Draw(void)
 			DxLib::DrawString(par[cnt].right.x - offset.x, par[cnt].right.y - offset.y, "Åv", GetColor(255, 0, 0));
 		}
 
-		DrawBox(pos.x, pos.y, pos.x + size.x, pos.y + size.y, GetColor(255, 255, 255), true);
+		Scene::DrawModiGraph("hukidasi");
 		DrawString(m[cnt]);
 	}
 }

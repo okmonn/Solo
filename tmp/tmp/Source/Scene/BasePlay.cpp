@@ -32,6 +32,9 @@ BasePlay::BasePlay() : game(Game::Get()), mane(GameMane::Get()), mouse(Mouse::Ge
 	com.resize(COMMAND_MAX);
 	back.reset(new BackGround());
 
+	Load("Material/img/win.png", "win", game.GetWinSize());
+	Load("Material/img/lose.png", "lose", game.GetWinSize());
+
 	ComInit();
 }
 
@@ -115,11 +118,11 @@ void BasePlay::EndDraw(void)
 
 	if (mane.GetPL().size() != 0)
 	{
-
+		Scene::DrawGraph("win");
 	}
 	else
 	{
-
+		Scene::DrawGraph("lose");
 	}
 }
 
