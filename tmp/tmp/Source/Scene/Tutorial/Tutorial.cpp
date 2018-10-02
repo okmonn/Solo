@@ -78,6 +78,14 @@ void Tutorial::DrawString(const std::string & mozi)
 
 		DxLib::DrawString(pos.x, pos.y + 32 * i, st[i].c_str(), GetColor(0, 0, 0));
 	}
+
+	if (cnt != 6 && index >= (int)mozi.size())
+	{
+		if ((flam % 10) / 6 == 0)
+		{
+			DxLib::DrawString(game.GetWinSize().x - 100, game.GetWinSize().y - 50, "ƒNƒŠƒbƒN", GetColor(255, 0, 0));
+		}
+	}
 }
 
 // •`‰æ
@@ -87,14 +95,16 @@ void Tutorial::Draw(void)
 
 	(this->*draw)();
 
-	if (draw == &Tutorial::ButtleDraw && cnt < par.size())
+	if (draw == &Tutorial::ButtleDraw && cnt < m.size())
 	{
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 124);
-		DrawBox(par[cnt].left.x, par[cnt].left.y, par[cnt].right.x, par[cnt].right.y, GetColor(255, 255, 255), true);
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-
-		DxLib::DrawString(par[cnt].left.x - 1, par[cnt].left.y - 5, "u", GetColor(255, 0, 0));
-		DxLib::DrawString(par[cnt].right.x - offset.x, par[cnt].right.y - offset.y, "v", GetColor(255, 0, 0));
+		if (!(par.size() <= cnt))
+		{
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, 124);
+			DrawBox(par[cnt].left.x, par[cnt].left.y, par[cnt].right.x, par[cnt].right.y, GetColor(255, 255, 255), true);
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+			DxLib::DrawString(par[cnt].left.x - 1, par[cnt].left.y - 5, "u", GetColor(255, 0, 0));
+			DxLib::DrawString(par[cnt].right.x - offset.x, par[cnt].right.y - offset.y, "v", GetColor(255, 0, 0));
+		}
 
 		DrawBox(pos.x, pos.y, pos.x + size.x, pos.y + size.y, GetColor(255, 255, 255), true);
 		DrawString(m[cnt]);
@@ -119,7 +129,7 @@ void Tutorial::SetUpData(void)
 // Ž©w‚Æ“Gw‚Ìà–¾
 void Tutorial::Description1(void)
 {
-	if (mouse.TrigerClick() == true)
+	if (mouse.TrigerClick() == true && cnt != 6)
 	{
 		++cnt;
 		num   = -1;
@@ -129,9 +139,22 @@ void Tutorial::Description1(void)
 		{
 			st[i].clear();
 		}
-		if (cnt >= par.size())
+		if (cnt >= m.size())
 		{
 			updata = &Tutorial::ButtleUpData;
+		}
+	}
+	else
+	{
+		if (cnt == 6)
+		{
+			++flam;
+			if (flam >= 60)
+			{
+				++cnt;
+				flam = 0;
+			}
+			mane.UpData();
 		}
 	}
 }
@@ -146,25 +169,4 @@ void Tutorial::UpData(void)
 	}
 
 	(this->*updata)();
-
-	if (CheckHitKey(KEY_INPUT_RIGHT))
-	{
-		pos.x += 1;
-		printf("%d, %d\n", pos.x, pos.y);
-	}
-	else if (CheckHitKey(KEY_INPUT_LEFT))
-	{
-		pos.x -= 1;
-		printf("%d, %d\n", pos.x, pos.y);
-	}
-	else if (CheckHitKey(KEY_INPUT_UP))
-	{
-		pos.y -= 1;
-		printf("%d, %d\n", pos.x, pos.y);
-	}
-	else if (CheckHitKey(KEY_INPUT_DOWN))
-	{
-		pos.y += 1;
-		printf("%d, %d\n", pos.x, pos.y);
-	}
 }

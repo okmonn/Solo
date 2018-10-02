@@ -29,8 +29,6 @@ Obj::Obj(const std::string& id, const int& hp, const int& attack, const int& def
 	id(id + ".png"), image(mane.LoadImg("Material/img/" + this->id)), circle(mane.LoadImg("Material/img/Timer.png")), attackFlag(false), tmpDef(0), critical(1.0f),
 	pos(pos), size(RECT_SIZE), index(0), flam(0), large(2), state(State::go), next(State::attack1), reverse(reverse), move(0.0f), target(0), die(false), old_hp(this->hp)
 {
-	d_attack = this->attack;
-
 	damage.pos = { pos.x + size.x / 2, pos.y };
 	damage.num.str("");
 	damageFlam = 0;
@@ -41,6 +39,8 @@ Obj::Obj(const std::string& id, const int& hp, const int& attack, const int& def
 	this->attack = attack;
 	this->def = def;
 	this->speed = speed;
+
+	d_attack = this->attack;
 
 	func = &Obj::Go;
 
