@@ -18,12 +18,11 @@
 // かっこのオフセット
 const Vec2 offset = {12, 35};
 
-Vec2 pos = {};
-
 // コンストラクタ
 Tutorial::Tutorial() : 
-	cnt(0)
+	pos({ 170, 365 }), size({310, 100}), cnt(0), flam(0), index(0), num(-1)
 {
+	st.resize(3);
 	mane.Clear();
 	LoadEnemy();
 	LoadPlayer();
@@ -51,6 +50,36 @@ void Tutorial::LoadPlayer(void)
 	}
 }
 
+// 説明文字の表示
+void Tutorial::DrawString(const std::string & mozi)
+{
+	if (mozi.size() > MOZI_MAX * 2 * MAX || cnt >= m.size())
+	{
+		return;
+	}
+
+	++flam;
+	if (flam % 10 == 0)
+	{
+		index = (index + 2 > (int)mozi.size()) ? index : index + 2;
+		if ((index - 2) % (MOZI_MAX * 2) == 0)
+		{
+			++num;
+		}
+		st[num] = mozi.substr((MOZI_MAX * 2) * num, index - (MOZI_MAX * 2 * num));
+	}
+
+	for (unsigned int i = 0; i < st.size(); ++i)
+	{
+		if (st[i].empty() == true)
+		{
+			continue;
+		}
+
+		DxLib::DrawString(pos.x, pos.y + 32 * i, st[i].c_str(), GetColor(0, 0, 0));
+	}
+}
+
 // 描画
 void Tutorial::Draw(void)
 {
@@ -61,11 +90,14 @@ void Tutorial::Draw(void)
 	if (draw == &Tutorial::ButtleDraw && cnt < par.size())
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 124);
-		DrawBox(par[cnt].left.x + pos.x, par[cnt].left.y + pos.y, par[cnt].right.x + pos.x, par[cnt].right.y + pos.y, GetColor(255, 255, 255), true);
+		DrawBox(par[cnt].left.x, par[cnt].left.y, par[cnt].right.x, par[cnt].right.y, GetColor(255, 255, 255), true);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-		DrawString(par[cnt].left.x - 1, par[cnt].left.y - 5, "「", GetColor(255, 0, 0));
-		DrawString(par[cnt].right.x - offset.x, par[cnt].right.y - offset.y, "」", GetColor(255, 0, 0));
+		DxLib::DrawString(par[cnt].left.x - 1, par[cnt].left.y - 5, "「", GetColor(255, 0, 0));
+		DxLib::DrawString(par[cnt].right.x - offset.x, par[cnt].right.y - offset.y, "」", GetColor(255, 0, 0));
+
+		DrawBox(pos.x, pos.y, pos.x + size.x, pos.y + size.y, GetColor(255, 255, 255), true);
+		DrawString(m[cnt]);
 	}
 }
 
@@ -90,6 +122,13 @@ void Tutorial::Description1(void)
 	if (mouse.TrigerClick() == true)
 	{
 		++cnt;
+		num   = -1;
+		index = 0;
+		flam  = 0;
+		for (unsigned int i = 0; i < st.size(); ++i)
+		{
+			st[i].clear();
+		}
 		if (cnt >= par.size())
 		{
 			updata = &Tutorial::ButtleUpData;

@@ -19,6 +19,9 @@ public:
 private:
 	// プレイヤーの読み込み
 	void LoadPlayer(void);
+
+	// 説明文字の表示
+	void DrawString(const std::string& mozi);
 	
 	// 戦闘前処理
 	void SetUpData(void);
@@ -27,8 +30,26 @@ private:
 	void Description1(void);
 	
 
+	// 吹き出し座標
+	Vec2 pos;
+
+	// 吹き出しサイズ
+	Vec2 size;
+
 	// 進行状況カウント
 	unsigned int cnt;
+
+	// 経過フレーム
+	unsigned int flam;
+
+	// インデックス
+	int index;
+
+	// 吹き出しインデックス
+	int num;
+
+	// 表示文字
+	std::vector<std::string> st;
 
 	// 関数ポインタ
 	void (Tutorial::*draw)(void);

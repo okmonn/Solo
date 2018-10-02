@@ -266,6 +266,12 @@ private:
 	// ダメージ
 	Dmg damage;
 
+	// クリティカル
+	float critical;
+
+	// ダミー攻撃力
+	int d_attack;
+
 	// 関数ポインタ
 	void (Obj::*func)(void);
 };
