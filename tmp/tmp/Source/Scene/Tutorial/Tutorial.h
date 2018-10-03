@@ -22,6 +22,9 @@ private:
 
 	// 説明文字の表示
 	void DrawString(const std::string& mozi);
+
+	// フェードイン
+	void FadeIn(void);
 	
 	// 戦闘前処理
 	void SetUpData(void);
@@ -50,6 +53,9 @@ private:
 
 	// 表示文字
 	std::vector<std::string> st;
+
+	// 色
+	unsigned int color;
 
 	// 関数ポインタ
 	void (Tutorial::*draw)(void);

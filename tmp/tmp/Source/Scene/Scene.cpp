@@ -5,7 +5,7 @@
 
 // コンストラクタ
 Scene::Scene() : 
-	game(Game::Get()), mane(ImageMane::Get())
+	game(Game::Get()), mane(ImageMane::Get()), alpha(255), fadeSpeed(5)
 {
 	image.clear();
 }

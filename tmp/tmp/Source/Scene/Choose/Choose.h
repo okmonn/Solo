@@ -28,6 +28,18 @@ private:
 	// 画像読み込み
 	void Load(void);
 
+	// フェードイン
+	void FadeIn(void);
+
+	// キャラ選択
+	void ChooseObj(void);
+
+	// 通常処理
+	void Normal(void);
+
+	// フェードアウト
+	void FadeOut(void);
+
 
 	// イメージマネ
 	ImageMane& image;
@@ -65,6 +77,12 @@ private:
 	// 色
 	unsigned int color;
 
+	// ボックス色
+	unsigned int b_color;
+
 	// 画像ハンドル
 	std::vector<int>handle;
+
+	// 関数ポインタ
+	void (Choose::*func)(void);
 };

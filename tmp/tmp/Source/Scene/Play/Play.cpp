@@ -15,7 +15,8 @@
 #define COMMAND_MAX 4
 
 // コンストラクタ
-Play::Play()
+Play::Play() : 
+	color(GetColor(255,255,255))
 {
 	mane.Clear();
 	LoadEnemy();
@@ -26,7 +27,7 @@ Play::Play()
 	Load("Material/img/GameStart.png", "start2", { game.GetWinSize().x , 100 }, { 0, game.GetWinSize().y - 100 });
 
 	draw = &Play::SetDraw;
-	updata = &Play::SetUpData;
+	updata = &Play::FadeIn;
 }
 
 // デストラクタ
@@ -40,6 +41,24 @@ void Play::Draw(void)
 	back->Draw();
 
 	(this->*draw)();
+
+	if (alpha > 0)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+		DrawBox(0, 0, game.GetWinSize().x, game.GetWinSize().y, color, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
+}
+
+// フェードイン
+void Play::FadeIn(void)
+{
+	alpha -= fadeSpeed;
+	if (alpha <= 0)
+	{
+		alpha = 0;
+		updata = &Play::SetUpData;
+	}
 }
 
 // 戦闘前処理
@@ -62,6 +81,7 @@ void Play::UpData(void)
 {
 	if (mane.GetPL().size() == 0 || mane.GetEn().size() == 0)
 	{
+		color = 0;
 		draw = &Play::EndDraw;
 		updata = &Play::EndUpData;
 	}

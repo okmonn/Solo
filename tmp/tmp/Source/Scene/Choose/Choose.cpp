@@ -28,6 +28,9 @@ Choose::Choose() : image(ImageMane::Get()), mane(GameMane::Get()), mouse(Mouse::
 {
 	select.resize(pos.size());
 	handle.clear();
+	b_color = 0;
+
+	func = &Choose::FadeIn;
 
 	Load();
 	InitSelect();
@@ -87,31 +90,29 @@ void Choose::Draw(void)
 
 	DrawBox(500 - 10, 380 - 10, 580, 430, GetColor(0, 255, 0), true);
 	DrawString(playPos.x, playPos.y, "バトル", color, false);
+
+	if (alpha > 0)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+		DrawBox(0, 0, game.GetWinSize().x, game.GetWinSize().y, color, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
 }
 
-// 処理
-void Choose::UpData(void)
+// フェードイン
+void Choose::FadeIn(void)
 {
-	++flam;
-	if (flam >= FLAM_MAX)
+	alpha -= fadeSpeed;
+	if (alpha <= 0)
 	{
-		index = (index + 1 >= 3) ? 0 : ++index;
-		flam = 0;
+		alpha = 0;
+		func = &Choose::Normal;
 	}
+}
 
-	for (unsigned int i = 0; i < select.size(); ++i)
-	{
-		if ((pos[i].x - BOX_OFFSET < mouse.GetPos().x && mouse.GetPos().x < pos[i].x + size.x * large + BOX_OFFSET)
-			&& (pos[i].y - BOX_OFFSET < mouse.GetPos().y && mouse.GetPos().y < pos[i].y + size.y * large + BOX_OFFSET))
-		{
-			if (mouse.TrigerClick() == true)
-			{
-				target = i;
-				break;
-			}
-		}
-	}
-
+// キャラ選択
+void Choose::ChooseObj(void)
+{
 	for (int i = 0; i < 2; ++i)
 	{
 		if (((pos[target].x + (size.x * large * i) + ALLREY_OFFSET * (2 - (1 + i) - i) < mouse.GetPos().x && mouse.GetPos().x < pos[target].x + (size.x * large * i) - ALLREY_OFFSET * (2 - (1 + i) - i)
@@ -158,6 +159,32 @@ void Choose::UpData(void)
 			break;
 		}
 	}
+}
+
+// 通常処理
+void Choose::Normal(void)
+{
+	++flam;
+	if (flam >= FLAM_MAX)
+	{
+		index = (index + 1 >= 3) ? 0 : ++index;
+		flam = 0;
+	}
+
+	for (unsigned int i = 0; i < select.size(); ++i)
+	{
+		if ((pos[i].x - BOX_OFFSET < mouse.GetPos().x && mouse.GetPos().x < pos[i].x + size.x * large + BOX_OFFSET)
+			&& (pos[i].y - BOX_OFFSET < mouse.GetPos().y && mouse.GetPos().y < pos[i].y + size.y * large + BOX_OFFSET))
+		{
+			if (mouse.TrigerClick() == true)
+			{
+				target = i;
+				break;
+			}
+		}
+	}
+
+	ChooseObj();
 
 	if ((playPos.x - 10 < mouse.GetPos().x && mouse.GetPos().x < playPos.x - 10 + playSize.x)
 		&& (playPos.y - 10 < mouse.GetPos().y && mouse.GetPos().y < playPos.y - 10 + playSize.y))
@@ -171,11 +198,28 @@ void Choose::UpData(void)
 				mane.SetID_PL(i, mane.GetID(select[i]));
 			}
 
-			game.ChangeScene(new Play());
+			b_color = GetColor(255, 255, 255);
+			func = &Choose::FadeOut;
 		}
 	}
 	else
 	{
 		color = GetColor(255, 255, 255);
 	}
+}
+
+// フェードアウト
+void Choose::FadeOut(void)
+{
+	alpha += fadeSpeed;
+	if (alpha >= 255)
+	{
+		game.ChangeScene(new Play());
+	}
+}
+
+// 処理
+void Choose::UpData(void)
+{
+	(this->*func)();
 }

@@ -41,6 +41,15 @@ private:
 	// クエスト名の初期化
 	void QuestInit(void);
 
+	// フェードイン
+	void FadeIn(void);
+
+	// 通常処理
+	void Normal(void);
+
+	// フェードアウト
+	void FadeOut(void);
+
 
 	// マウス
 	Mouse& mouse;
@@ -48,6 +57,12 @@ private:
 	// ステージ
 	Stage& stage;
 
+	// 色
+	unsigned int color;
+
 	// クエスト項目
 	std::vector<QuestName>quest;
+
+	// 関数ポインタ
+	void (Select::*func)(void);
 };

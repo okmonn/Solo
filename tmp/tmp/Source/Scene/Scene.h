@@ -44,6 +44,12 @@ protected:
 	// イメージマネージャー
 	ImageMane& mane;
 
+	// アルファ値
+	int alpha;
+
+	// フェード速度
+	int fadeSpeed;
+
 	// 画像データ
 	std::map<std::string, Data>image;
 };

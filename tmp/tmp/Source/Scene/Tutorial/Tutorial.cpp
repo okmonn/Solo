@@ -20,7 +20,7 @@ const Vec2 offset = {12, 35};
 
 // コンストラクタ
 Tutorial::Tutorial() : 
-	pos({ 170, 365 }), size({310, 100}), cnt(0), flam(0), index(0), num(-1)
+	pos({ 170, 365 }), size({310, 100}), cnt(0), flam(0), index(0), num(-1), color(GetColor(255,255,255))
 {
 	st.resize(3);
 	mane.Clear();
@@ -34,7 +34,7 @@ Tutorial::Tutorial() :
 	Load("Material/img/hukidasi.png", "hukidasi", {size.x + 50, size.y + 80}, { pos.x - 30, pos.y - 20 });
 	
 	draw = &Tutorial::SetDraw;
-	updata = &Tutorial::SetUpData;
+	updata = &Tutorial::FadeIn;
 }
 
 // デストラクタ
@@ -89,6 +89,17 @@ void Tutorial::DrawString(const std::string & mozi)
 	}
 }
 
+// フェードイン
+void Tutorial::FadeIn(void)
+{
+	alpha -= fadeSpeed;
+	if (alpha <= 0)
+	{
+		alpha = 0;
+		updata = &Tutorial::SetUpData;
+	}
+}
+
 // 描画
 void Tutorial::Draw(void)
 {
@@ -109,6 +120,13 @@ void Tutorial::Draw(void)
 
 		Scene::DrawModiGraph("hukidasi");
 		DrawString(m[cnt]);
+	}
+
+	if (alpha > 0)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+		DrawBox(0, 0, game.GetWinSize().x, game.GetWinSize().y, color, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 }
 
@@ -165,6 +183,7 @@ void Tutorial::UpData(void)
 {
 	if (mane.GetPL().size() == 0 || mane.GetEn().size() == 0)
 	{
+		color = 0;
 		draw = &Tutorial::EndDraw;
 		updata = &Tutorial::EndUpData;
 	}

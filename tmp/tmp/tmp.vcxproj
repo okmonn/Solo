@@ -141,7 +141,6 @@
     <ClCompile Include="Source\Scene\BasePlay.cpp" />
     <ClCompile Include="Source\Scene\Choose\Choose.cpp" />
     <ClCompile Include="Source\Scene\Play\Play.cpp" />
-    <ClCompile Include="Source\Scene\Result\Result.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Scene\Select\Select.cpp" />
     <ClCompile Include="Source\Scene\Title\Title.cpp" />
@@ -162,7 +161,6 @@
     <ClInclude Include="Source\Scene\BasePlay.h" />
     <ClInclude Include="Source\Scene\Choose\Choose.h" />
     <ClInclude Include="Source\Scene\Play\Play.h" />
-    <ClInclude Include="Source\Scene\Result\Result.h" />
     <ClInclude Include="Source\Scene\Scene.h" />
     <ClInclude Include="Source\Scene\Select\Quest.h" />
     <ClInclude Include="Source\Scene\Select\Select.h" />

@@ -307,7 +307,11 @@ void BasePlay::EndUpData(void)
 	++flam;
 	if (flam >= END_FLAM)
 	{
-		game.ChangeScene(new Select());
+		alpha += fadeSpeed;
+		if (alpha >= 255)
+		{
+			game.ChangeScene(new Select());
+		}
 	}
 	else
 	{

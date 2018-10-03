@@ -24,9 +24,14 @@ public:
 	void UpData(void);
 
 private:
+	// フェードイン
+	void FadeIn(void);
+
 	// 戦闘前処理
 	void SetUpData(void);
-	
+
+	// 色
+	unsigned int color;
 
 	// 関数ポインタ
 	void (Play::*draw)(void);

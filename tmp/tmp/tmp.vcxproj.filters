@@ -43,9 +43,6 @@
     <Filter Include="Scene\Select">
       <UniqueIdentifier>{19e9b121-6663-4eee-927f-91f6bb0322e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Result">
-      <UniqueIdentifier>{ea982e2f-00aa-4114-bac7-b2c6599ecb16}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Charactor">
       <UniqueIdentifier>{70f4443b-1f6a-4655-acac-dd1796e86dd6}</UniqueIdentifier>
     </Filter>
@@ -86,9 +83,6 @@
     </ClCompile>
     <ClCompile Include="Source\Scene\Select\Select.cpp">
       <Filter>Scene\Select</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scene\Result\Result.cpp">
-      <Filter>Scene\Result</Filter>
     </ClCompile>
     <ClCompile Include="Source\Charactor\Obj.cpp">
       <Filter>Charactor</Filter>
@@ -148,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="Source\Scene\Select\Quest.h">
       <Filter>Scene\Select</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scene\Result\Result.h">
-      <Filter>Scene\Result</Filter>
     </ClInclude>
     <ClInclude Include="Source\Charactor\Obj.h">
       <Filter>Charactor</Filter>

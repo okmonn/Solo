@@ -34,11 +34,23 @@ private:
 	// 円の初期化
 	void CircleInit(void);
 
+	// フェードイン
+	void FadeIn(void);
+
+	// 通常処理
+	void Normal(void);
+
+	// フェードアウト
+	void FadeOut(void);
+
 
 	// マウス
 	Mouse& mouse;
 
 	// 円
 	std::vector<Circle>circle;
+
+	// 関数ポインタ
+	void (Title::*func)(void);
 };
 

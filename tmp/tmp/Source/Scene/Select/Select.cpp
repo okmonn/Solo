@@ -10,9 +10,11 @@
 
 // コンストラクタ
 Select::Select() :
-	mouse(Mouse::Get()), stage(Stage::Get())
+	mouse(Mouse::Get()), stage(Stage::Get()), color(0)
 {
 	quest.resize(QUESTNAME_MAX);
+
+	func = &Select::FadeIn;
 
 	LoadInit();
 	QuestInit();
@@ -53,29 +55,43 @@ void Select::Draw(void)
 	{
 		DrawString(quest[i].pos.x, quest[i].pos.y, quest[i].name.c_str(), quest[i].color, false);
 	}
+
+	if (alpha > 0)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+		DrawBox(0, 0, game.GetWinSize().x, game.GetWinSize().y, color, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
 }
 
-// 処理
-void Select::UpData(void)
+// フェードイン
+void Select::FadeIn(void)
+{
+	alpha -= fadeSpeed;
+	if (alpha <= 0)
+	{
+		alpha = 0;
+		func = &Select::Normal;
+	}
+}
+
+// 通常処理
+void Select::Normal(void)
 {
 	for (int i = 0; i < QUESTNAME_MAX; ++i)
 	{
 		if ((quest[i].pos.x - quest[i].offset.x <= mouse.GetPos().x && mouse.GetPos().x <= quest[i].pos.x - quest[i].offset.x + quest[i].size.x)
-		 && (quest[i].pos.y - quest[i].offset.y <= mouse.GetPos().y && mouse.GetPos().y <= quest[i].pos.y - quest[i].offset.y + quest[i].size.y))
+			&& (quest[i].pos.y - quest[i].offset.y <= mouse.GetPos().y && mouse.GetPos().y <= quest[i].pos.y - quest[i].offset.y + quest[i].size.y))
 		{
 			quest[i].color = GetColor(255, 0, 0);
 			if (mouse.TrigerClick() == true)
 			{
 				stage.SetIndex(i);
 				stage.LoadStage();
-				if (i != 0)
-				{
-					game.ChangeScene(new Choose());
-				}
-				else
-				{
-					game.ChangeScene(new Tutorial());
-				}
+
+				color = (stage.GetIndex() != 0) ? 0 : GetColor(255, 255, 255);
+				
+				func = &Select::FadeOut;
 
 				break;
 			}
@@ -85,4 +101,28 @@ void Select::UpData(void)
 			quest[i].color = GetColor(255, 255, 255);
 		}
 	}
+}
+
+// フェードアウト
+void Select::FadeOut(void)
+{
+	alpha += fadeSpeed;
+	if (alpha >= 255)
+	{
+		if (stage.GetIndex() != 0)
+		{
+			game.ChangeScene(new Choose());
+		}
+		else
+		{
+			game.ChangeScene(new Tutorial());
+		}
+	}
+}
+
+
+// 処理
+void Select::UpData(void)
+{
+	(this->*func)();
 }

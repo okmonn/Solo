@@ -18,6 +18,8 @@ Title::Title() :
 {
 	circle.resize(CIRCLE_MAX);
 
+	func = &Title::FadeIn;
+
 	CircleInit();
 }
 
@@ -48,6 +50,17 @@ void Title::CircleInit(void)
 	}
 }
 
+// フェードイン
+void Title::FadeIn(void)
+{
+	alpha -= fadeSpeed;
+	if (alpha <= 0)
+	{
+		alpha = 0;
+		func = &Title::Normal;
+	}
+}
+
 // 描画
 void Title::Draw(void)
 {
@@ -59,14 +72,21 @@ void Title::Draw(void)
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	DrawString(250, 250, "タイトル", GetColor(255, 0, 0), false);
+
+	if (alpha > 0)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+		DrawBox(0, 0, game.GetWinSize().x, game.GetWinSize().y, 0, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
 }
 
-// 処理
-void Title::UpData(void)
+// 通常処理
+void Title::Normal(void)
 {
 	if (mouse.TrigerClick())
 	{
-		game.ChangeScene(new Select());
+		func = &Title::FadeOut;
 	}
 
 	for (unsigned int i = 0; i < circle.size(); ++i)
@@ -97,4 +117,20 @@ void Title::UpData(void)
 			circle[i].pos = { x(), y() };
 		}
 	}
+}
+
+// フェードアウト
+void Title::FadeOut(void)
+{
+	alpha += fadeSpeed;
+	if (alpha >= 255)
+	{
+		game.ChangeScene(new Select());
+	}
+}
+
+// 処理
+void Title::UpData(void)
+{
+	(this->*func)();
 }
