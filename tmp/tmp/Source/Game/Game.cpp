@@ -28,6 +28,9 @@ void Game::ChangeScene(Scene * scene)
 // 初期化
 void Game::Init(void)
 {
+	//ログの出力制御
+	SetOutApplicationLogValidFlag(false);
+
 	//グラフィックモードの設定
 	SetGraphMode(WINDOW_X, WINDOW_Y, 32);
 

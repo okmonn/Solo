@@ -40,7 +40,7 @@ Obj::Obj(const std::string& id, const int& hp, const int& attack, const int& def
 	this->def = def;
 	this->speed = speed;
 
-	d_attack = this->attack;
+	d_attack = attack;
 
 	func = &Obj::Go;
 

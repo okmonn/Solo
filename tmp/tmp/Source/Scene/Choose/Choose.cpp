@@ -94,7 +94,7 @@ void Choose::Draw(void)
 	if (alpha > 0)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
-		DrawBox(0, 0, game.GetWinSize().x, game.GetWinSize().y, color, true);
+		DrawBox(0, 0, game.GetWinSize().x, game.GetWinSize().y, b_color, true);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 }
